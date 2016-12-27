@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/dragonator/code/ruby_course/game_of_life/lib/game_of_life'
+let g:netrw_dirhist_2='/home/dragonator/code/game_of_life/lib/game_of_life'
+let g:netrw_dirhist_3='/home/dragonator/code/game_of_life/lib'
+let g:netrw_dirhist_4='/home/dragonator/code/game_of_life/lib/game_of_life'
+let g:netrw_dirhist_5='/home/dragonator/code/game_of_life/lib'
