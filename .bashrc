@@ -30,7 +30,7 @@ export PS1
 ## Must be unset at the end of file
 
 # Path to code directory
-CODE_DIR=$HOME/code
+CODE_DIR="$HOME/code"
 
 #----------------------------------------------------------#
 #                   Export Variables                       #
@@ -72,10 +72,10 @@ if ! shopt -oq posix; then
 fi
 
 # Completion for code function
-__code_complete ()
+__code_complete()
 {
     local cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=( $(compgen -d "$CODE_DIR"/"$cur" | cut -d '/' -f 5) )
+    COMPREPLY=( $(compgen -d "$CODE_DIR/$cur" | cut -d '/' -f 5) )
     
 }
 complete -F __code_complete code
@@ -84,7 +84,8 @@ complete -F __code_complete code
 #                       Functions                          #
 #----------------------------------------------------------#
 # Shortcut to nand2tetris projects directory
-nand() {
+nand()
+{
     project_dir=$1
     size=${#project_dir}
     if [ "$size" -lt 2 ];then
@@ -95,7 +96,7 @@ nand() {
 }
 
 # Shortcut to code (sub)directory
-code () { cd "$CODE_DIR"/"$1" ; }
+code () { cd "$CODE_DIR/$1" ; }
 
 #----------------------------------------------------------#
 #                         Others                           #
@@ -119,9 +120,3 @@ fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-#----------------------------------------------------------#
-#               Unset Internal Variables                   #
-#----------------------------------------------------------#
-unset CODE_DIR
-
