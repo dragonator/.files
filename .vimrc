@@ -19,11 +19,14 @@ Bundle 'scrooloose/syntastic'
 
 filetype plugin indent on
 
-" Easy shortcuts
+" Normal mode remaps
 nnoremap <Leader>w  :w<CR>
 nnoremap <Leader>q  :q<CR>
 nnoremap <Leader>q1 :q!<CR>
 nnoremap <Leader>x  :x<CR>
+
+" Visual mode remaps
+vnoremap // y/<C-R>"<CR>
 
 " Remap keys for managing windows
 map <leader>v <C-W>v<C-W><Right>
