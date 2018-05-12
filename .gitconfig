@@ -1,0 +1,43 @@
+[user]
+	name = Teodor Draganov
+	email = draganov93@gmail.com
+[core]
+	editor = vim
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[alias]
+  a  = add
+  aa = add --all
+  br       = branch
+  cl = clone
+  co       = checkout
+  cp       = cherry-pick
+  df       = diff
+  dfno     = diff --name-only
+  st       = status
+  status   = status -uno
+  stash-untracked = "!f() {    \
+        git stash;               \
+        git stash -u;            \
+        git stash pop stash@{1}; \
+  }; f"
+	uncommit = reset HEAD^
+[diff]
+	tool = bc3
+[difftool "bc3"]
+	trustExitCode = true
+[merge]
+	tool = bc3
+[mergetool "bc3"]
+	trustExitCode = true
+[difftool]
+	prompt = false
+[format]
+	pretty = oneline
+[log]
+  decorate = auto
