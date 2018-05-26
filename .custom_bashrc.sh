@@ -41,6 +41,7 @@ alias ls='ls --color'
 alias ll='ls -l'
 alias la='ll -a'
 alias lla='la'
+alias google='googler'
 
 ##############################################################
 ##                          Others                          ##
