@@ -41,36 +41,19 @@ map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" ============ Python Mode =============
-
-" Trim unused white spaces on save
-let g:pymode_trim_whitespaces = 1
-
-" Setup default python options 
-" (see :help pymode for more info)
-let g:pymode_options = 1
-
-" Fast and usual python folding
-let g:pymode_folding = 1
-
-" Bind key for documentation
-let g:pymode_doc_bind = '-'
-
-" ======================================
-
 " Set vim's working directory to the
 " current file's directory automatically
 autocmd BufEnter * lcd %:p:h
+
+" Automatically attempt to set the working directory to the current
+" file. This value will be superceeded by rooter if it is installed
+set autochdir
 
 " Ensure vim uses bash
 set shell=/bin/bash
 
 " Automatically reload on file changes
 set autoread
-
-" Automatically attempt to set the working directory to the current
-" file. This value will be superceeded by rooter if it is installed
-set autochdir
 
 " Fancy status line (required for airline))
 set laststatus=2
