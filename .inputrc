@@ -1,0 +1,5 @@
+# Fix DEL-Key not working in some Application
+set enable-keypad on
+
+# Disables system bell
+set bell-style none
