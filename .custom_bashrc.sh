@@ -1,20 +1,8 @@
 #!/bin/bash
 ##############################################################
-##                   Customize bash prompt                  ##
+##                   Customize bash                         ##
 ##############################################################
-# Colors
-RED="\[\e[38;5;160m\]"
-GREEN="\[\e[38;5;112m\]"
-YELLOW="\[\e[38;5;178m\]"
-BLUE="\[\e[38;5;110m\]"
-BOLD="\[\e[1m\]"
-END="\[\e[0m\]"
-
-PS1_START="${BOLD}${RED}\d \t${END}"
-PS1_END=" ${BOLD}${YELLOW}\w\n${GREEN}\u${BLUE}@\h _LAST_COMMAND_INDICATOR_ \[$(tput sgr0)\]"
-PS1="${PS1_START}${PS1_END}"
-
-# Adjust the title the current directory
+# Adjust the title with the current directory
 export MY_XTITLE=1
 
 ##############################################################
@@ -38,32 +26,21 @@ export LANGUAGE=en_US.UTF-8
 # Set vim as default editor
 export EDITOR=vim
 
-##############################################################
-##                     Bash Completions                     ##
-##############################################################
-# Completion for code function
-function __code_complete
-{
-    local cur;
-    cur=$(join_by / "${COMP_WORDS[@]}" | sed -e 's/code\///')
-    match_result="$CODE_DIR/$cur" #"$CODE_DIR/$cur"
-    COMPREPLY=( $(compgen -d "$match_result" | sed -e 's,'".*/"',,')) # | sed -e 's/[^/]\///') )
-    
-}
-complete -F __code_complete code
+# Add custom tools to path
+export PATH=/home/tdragano/bin:$PATH
+
+# Set default terminal
+export TERM=xterm-256color
 
 ##############################################################
-##                        Functions                         ##
+##                         Aliases                          ##
 ##############################################################
-# Shortcut to code (sub)directory
-function code
-{
-    local code_subdir
-    code_subdir=$(join_by / "$@")
-    cd "$CODE_DIR/$code_subdir"
-}
-
-function join_by { local IFS="$1"; shift; echo "$*"; }
+alias tree='tree -a --dirsfirst -I .git'
+alias grep='grep --color'
+alias ls='ls --color'
+alias ll='ls -l'
+alias la='ll -a'
+alias lla='la'
 
 ##############################################################
 ##                          Others                          ##
@@ -72,6 +49,48 @@ function join_by { local IFS="$1"; shift; echo "$*"; }
 shopt -s globstar
 
 ##############################################################
-##                         Aliases                          ##
+##                     Bash Completions                     ##
 ##############################################################
-alias tree='tree -a --dirsfirst -I .git'
+# Completion for code function
+__code_complete() {
+    local cur;
+    cur=$(join_by / "${COMP_WORDS[@]}" | sed -e 's/code\///')
+    match_result="$CODE_DIR/$cur"
+    COMPREPLY=( $(compgen -d "$match_result" | sed -e 's,'".*/"',,'))
+}
+
+complete -F __code_complete code
+
+##############################################################
+##                        Functions                         ##
+##############################################################
+# Shortcut to code (sub)directory
+function code() {
+    local code_subdir
+    code_subdir=$(join_by / "$@")
+    cd "$CODE_DIR/$code_subdir"
+}
+
+function join_by() { local IFS="$1"; shift; echo "$*"; }
+
+# Extract rpm in curent directory
+function xrpm() { rpm2cpio "$1" | cpio -idmv ; }
+
+# Remove duplicated entries in PATH
+function sanitize_path() {
+  if [ -n "$PATH" ]; then
+    old_PATH=$PATH:; PATH=
+    while [ -n "$old_PATH" ]; do
+      x=${old_PATH%%:*}       # the first remaining entry
+      case $PATH: in
+        *:"$x":*) ;;         # already there
+        *) PATH=$PATH:$x;;    # not there yet
+      esac
+      old_PATH=${old_PATH#*:}
+    done
+    PATH=${PATH#:}
+    unset old_PATH x
+  fi
+}
+
+sanitize_path
