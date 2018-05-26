@@ -16,8 +16,9 @@ override_git_prompt_colors() {
   BoldBlue="${Bold}${Blue}"
 
   ## These are the color definitions used by gitprompt.sh
-  GIT_PROMPT_PREFIX="${Yellow}|${ResetColor}"                 # start of the git info string
-  GIT_PROMPT_SUFFIX="${Yellow}|${ResetColor}"                # the end of the git info string
+  # GIT_PROMPT_LEADING_SPACE=0
+  GIT_PROMPT_PREFIX="${Yellow}(${ResetColor}"                 # start of the git info string
+  GIT_PROMPT_SUFFIX="${Yellow})${ResetColor}"                # the end of the git info string
   GIT_PROMPT_SEPARATOR="${Yellow}|${ResetColor}"              # separates each item
 
   GIT_PROMPT_BRANCH="${BoldBlue}"        # the git branch that is active in the current directory
@@ -25,6 +26,7 @@ override_git_prompt_colors() {
   # GIT_PROMPT_STAGED="${Red}●"           # the number of staged files/directories
   # GIT_PROMPT_CONFLICTS="${Red}✖ "       # the number of files in conflict
   # GIT_PROMPT_CHANGED="${Blue}✚ "        # the number of changed files
+  GIT_PROMPT_CHANGED="${BoldBlue}+${ResetColor}${Blue}"
 
   # GIT_PROMPT_REMOTE=" "                 # the remote branch name (if any) and the symbols for ahead and behind
   # GIT_PROMPT_UNTRACKED="${Cyan}…"       # the number of untracked files/dirs
@@ -36,9 +38,6 @@ override_git_prompt_colors() {
   ## e.g.
   ## GIT_PROMPT_COMMAND_OK="${Green}✔-_LAST_COMMAND_STATE_ "    # indicator if the last command returned with an exit code of 0
   ## GIT_PROMPT_COMMAND_FAIL="${Red}✘-_LAST_COMMAND_STATE_ "    # indicator if the last command returned with an exit code of other than 0
-
-  # GIT_PROMPT_COMMAND_OK="${Green}✔"    # indicator if the last command returned with an exit code of 0
-  # GIT_PROMPT_COMMAND_FAIL="${Red}✘-_LAST_COMMAND_STATE_"    # indicator if the last command returned with an exit code of other than 0
 
   GIT_PROMPT_COMMAND_OK="${Green}⇒${ResetColor}"
   GIT_PROMPT_COMMAND_FAIL="${Red}⇒${ResetColor}"
@@ -54,10 +53,10 @@ override_git_prompt_colors() {
   # GIT_PROMPT_UPSTREAM=" {${Blue}_UPSTREAM_${ResetColor}}"
 
   ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-  GIT_PROMPT_START_USER="${BoldYellow}\w${ResetColor}\n"
-  GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}${Red}(root)"
+  GIT_PROMPT_START_USER="${BoldYellow}\w${ResetColor}"
+  GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}${Red}(root) ${ResetColor}"
   # GIT_PROMPT_END_USER=" \n${White}${Time12a}${ResetColor} $ "
-  GIT_PROMPT_END_USER=" _LAST_COMMAND_INDICATOR_ "
+  GIT_PROMPT_END_USER="\n_LAST_COMMAND_INDICATOR_ "
   GIT_PROMPT_END_ROOT="${GIT_PROMPT_END_USER}"
 
   ## Please do not add colors to these symbols
