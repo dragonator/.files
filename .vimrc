@@ -7,15 +7,18 @@ call vundle#rc()
 Bundle 'gmarik/Vundle.vim'
 
 " Plugins
-Bundle 'klen/python-mode'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
+"Bundle 'fatih/vim-go'
 
 " Syntax highlighting
 Bundle 'KitN/nand2-vim-syn'
 Bundle 'scrooloose/syntastic'
+
+" gradle syntax highlightin
+au BufNewFile,BufRead *.gradle set filetype=groovy
 
 filetype plugin indent on
 
@@ -24,6 +27,7 @@ nnoremap <Leader>w  :w<CR>
 nnoremap <Leader>q  :q<CR>
 nnoremap <Leader>q1 :q!<CR>
 nnoremap <Leader>x  :x<CR>
+nnoremap [b orequire 'byebug'; byebug<ESC>
 
 " Visual mode remaps
 vnoremap // y/<C-R>"<CR>
@@ -81,6 +85,7 @@ set smartcase
 set hlsearch
 
 "Enable mouse support
+"set ttymouse=sgr
 set mouse=a
 
 " Command line history
@@ -96,7 +101,7 @@ set noshowmode
 " Minimum number of screen lines above and below the cursor
 set scrolloff=4
 
-"Command's auto completion
+" Command's auto completion
 set wildmenu
 set wildmode=longest,list
 
@@ -113,6 +118,7 @@ set encoding=utf-8
 
 " Fancy title, based on opened file
 set title
+let &titleold=getcwd()
 
 " Tab stuff
 set tabstop=2
@@ -165,3 +171,8 @@ set clipboard=unnamedplus
 set ttimeout
 set ttimeoutlen=100
 set timeoutlen=3000
+
+" Folding
+set foldnestmax=1
+set foldmethod=syntax
+" set foldclose=all
