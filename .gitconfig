@@ -1,8 +1,8 @@
 [user]
-	name = Teodor Draganov
-	email = draganov93@gmail.com
+  name = Teodor Draganov
+  email = draganov93@gmail.com
 [core]
-	editor = vim
+  editor = vim
 [color]
   diff = auto
   status = auto
@@ -13,31 +13,36 @@
 [alias]
   a  = add
   aa = add --all
-  br       = branch
+  br = branch
   cl = clone
-  co       = checkout
-  cp       = cherry-pick
-  df       = diff
-  dfno     = diff --name-only
-  st       = status
-  status   = status -uno
+  br = branch
+  cl = clone
+  co = checkout
+  cp = cherry-pick
+  df = diff
+  dfno = diff --name-only
+  st = status
+  status = status -uno
+  uncommit = reset HEAD^
   stash-untracked = "!f() {    \
         git stash;               \
         git stash -u;            \
         git stash pop stash@{1}; \
   }; f"
-	uncommit = reset HEAD^
+  uncommit = reset HEAD^
 [diff]
-	tool = bc3
+  tool = bc3
 [difftool "bc3"]
-	trustExitCode = true
+  trustExitCode = true
 [merge]
-	tool = bc3
+  tool = bc3
 [mergetool "bc3"]
-	trustExitCode = true
+  trustExitCode = true
 [difftool]
-	prompt = false
+  prompt = false
 [format]
-	pretty = oneline
+  pretty = oneline
 [log]
   decorate = auto
+[includeIf "gitdir:**/tdragano/**"]
+  path = ~/.gitconfig-work
