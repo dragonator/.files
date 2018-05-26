@@ -51,6 +51,9 @@ shopt -s globstar
 ##############################################################
 ##                     Bash Completions                     ##
 ##############################################################
+# Source bash completion for alacritty
+source $HOME/.config/alacritty/alacritty-completions.bash
+
 # Completion for code function
 __code_complete() {
     local cur;
