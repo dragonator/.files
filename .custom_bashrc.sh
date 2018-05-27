@@ -42,6 +42,7 @@ alias ll='ls -l'
 alias la='ll -a'
 alias lla='la'
 alias google='googler'
+alias .files='cd ~/.files'
 
 ##############################################################
 ##                          Others                          ##
