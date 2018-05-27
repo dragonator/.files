@@ -1,10 +1,12 @@
-filetype off
+set nocompatible              " be iMproved, required for Vundle
+filetype off                  " required for Vundle
 
+" Enable Vundle
 set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/Vundle.vim'
+Bundle 'VundleVim/Vundle.vim'
 
 " Plugins
 Bundle 'bling/vim-airline'
@@ -17,7 +19,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'KitN/nand2-vim-syn'
 Bundle 'scrooloose/syntastic'
 
-" gradle syntax highlightin
+" gradle syntax highlighting
 au BufNewFile,BufRead *.gradle set filetype=groovy
 
 filetype plugin indent on
