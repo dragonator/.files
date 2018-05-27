@@ -38,10 +38,15 @@ vnoremap // y/<C-R>"<CR>
 map <leader>v <C-W>v<C-W><Right>
 map <leader>s <C-W>s<C-W><Down>
 
+" Map keys for window navigation
 map <C-k> <C-W>k
 map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Map keys for running tests
+map <F3> :! cd `git rev-parse --show-toplevel` && bundle exec rspec <enter>
+map <F4> :! cd `git rev-parse --show-toplevel` && bundle exec cucumber <enter>
 
 " Set vim's working directory to the
 " current file's directory automatically
