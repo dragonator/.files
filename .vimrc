@@ -43,9 +43,15 @@ map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Map keys for running tests
-map <F3> :! cd `git rev-parse --show-toplevel` && bundle exec rspec <enter>
-map <F4> :! cd `git rev-parse --show-toplevel` && bundle exec cucumber <enter>
+" Run RSpec tests
+map <Leader>rf :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec rspec --format documentation " . expand('%:p')<cr>
+map <Leader>rl :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec rspec " . expand('%:p') . ":" . line(".")<cr>
+map <Leader>rt :w<cr>:!cd `git rev-parse --show-toplevel` && bundle exec rspec --format documentation<cr>
+
+" Run Cucumber tests
+map <Leader>cf :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec cucumber " . expand('%:p')<cr>
+map <Leader>cl :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec cucumber " . expand('%:p') . ":" . line(".")<cr>
+map <Leader>ct :w<cr>:!cd `git rev-parse --show-toplevel` && bundle exec cucumber<cr>
 
 " Set vim's working directory to the
 " current file's directory automatically
