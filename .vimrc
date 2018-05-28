@@ -43,6 +43,20 @@ map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Disable arrow keys in all modes
+nnoremap <Left> :echo "No left for you!"<CR>
+vnoremap <Left> :<C-u>echo "No left for you!"<CR>
+inoremap <Left> <C-o>:echo "No left for you!"<CR>
+nnoremap <Right> :echo "No right for you!"<CR>
+vnoremap <Right> :<C-u>echo "No right for you!"<CR>
+inoremap <Right> <C-o>:echo "No right for you!"<CR>
+nnoremap <Down> :echo "No down for you!"<CR>
+vnoremap <Down> :<C-u>echo "No down for you!"<CR>
+inoremap <Down> <C-o>:echo "No down for you!"<CR>
+nnoremap <Up> :echo "No up for you!"<CR>
+vnoremap <Up> :<C-u>echo "No up for you!"<CR>
+inoremap <Up> <C-o>:echo "No up for you!"<CR>
+
 " Run RSpec tests
 map <Leader>rf :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec rspec --format documentation " . expand('%:p')<cr>
 map <Leader>rl :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec rspec " . expand('%:p') . ":" . line(".")<cr>
