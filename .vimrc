@@ -12,7 +12,6 @@ Bundle 'VundleVim/Vundle.vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdcommenter'
 "Bundle 'fatih/vim-go'
 
 " Syntax highlighting
@@ -165,4 +164,5 @@ set timeoutlen=3000
 " Folding
 set foldnestmax=1
 set foldmethod=syntax
+set nofoldenable
 " set foldclose=all
