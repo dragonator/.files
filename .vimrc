@@ -12,6 +12,7 @@ Bundle 'VundleVim/Vundle.vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
+Bundle 'janko-m/vim-test'
 "Bundle 'fatih/vim-go'
 
 " Syntax highlighting
@@ -66,6 +67,16 @@ map <Leader>rt :w<cr>:!cd `git rev-parse --show-toplevel` && bundle exec rspec -
 map <Leader>cf :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec cucumber " . expand('%:p')<cr>
 map <Leader>cl :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec cucumber " . expand('%:p') . ":" . line(".")<cr>
 map <Leader>ct :w<cr>:!cd `git rev-parse --show-toplevel` && bundle exec cucumber<cr>
+
+" Generic mapping for running tests
+map <Leader>tn :TestNearest<cr>
+map <Leader>tf :TestFile<cr>
+map <Leader>ts :TestSuite<cr>
+map <Leader>tl :TestLast<cr>
+map <Leader>tv :TestVisit<cr>
+
+" Run last shell command
+map <Leader>1 :!!<cr>
 
 " Set vim's working directory to the
 " current file's directory automatically
