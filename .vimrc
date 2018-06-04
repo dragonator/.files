@@ -1,28 +1,22 @@
-set nocompatible              " be iMproved, required for Vundle
-filetype off                  " required for Vundle
-
-" Enable Vundle
-set runtimepath+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-
-" let Vundle manage Vundle
-Bundle 'VundleVim/Vundle.vim'
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugs')
 
 " Plugins
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fugitive'
-Bundle 'janko-m/vim-test'
-"Bundle 'fatih/vim-go'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'janko-m/vim-test'
+"Plug 'fatih/vim-go'
 
 " Syntax highlighting
-Bundle 'KitN/nand2-vim-syn'
-Bundle 'scrooloose/syntastic'
+Plug 'KitN/nand2-vim-syn'
+Plug 'scrooloose/syntastic'
 
-" gradle syntax highlighting
+call plug#end()
+
+" Syntax highlighting
 au BufNewFile,BufRead *.gradle set filetype=groovy
-
-filetype plugin indent on
+autocmd BufNewFile,BufRead *.hdl   set syntax=hdl
 
 " Normal mode remaps
 nnoremap <Leader>w  :w<CR>
@@ -162,7 +156,6 @@ set number
 syntax enable
 set background=dark
 colorscheme seoul256
-autocmd BufNewFile,BufRead *.hdl   set syntax=hdl
 
 " Disable beeping
 set noerrorbells visualbell t_vb=
@@ -176,9 +169,6 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-
-" More syntax highlighting.
-let python_highlight_all = 1
 
 " Show the cursor position all the time
 set cursorline cursorcolumn
