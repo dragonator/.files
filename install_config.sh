@@ -14,10 +14,6 @@ echo "source $DIR/.custom_bashrc.sh" >> $HOME/.bashrc
 echo "source $DIR/.ruby_bashrc.sh"   >> $HOME/.bashrc
 echo "source $DIR/.git_bashrc.sh"    >> $HOME/.bashrc
 
-# Install and configure bash-git-prompt
-git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
-ln -s $DIR/.git-prompt-colors.sh $HOME/.git-prompt-colors.sh
-
 # Others
 ln -s $DIR/.tmux.conf        $HOME/.tmux.conf
 ln -s $DIR/.tmux-themepack   $HOME/.tmux-themepack
@@ -25,3 +21,17 @@ ln -s $DIR/.gitconfig        $HOME/.gitconfig
 ln -s $DIR/.inputrc          $HOME/.inputrc
 ln -s $DIR/.config/alacritty $HOME/.config/alacritty
 ln -s $DIR/.config/nvim      $HOME/.config/nvim
+
+# Create local structure
+mkdir -p $HOME/local/bin
+mkdir -p $HOME/local/tools
+ln -s $HOME/local/bin $HOME/bin
+
+# Install and configure bash-git-prompt
+git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
+ln -s $DIR/.git-prompt-colors.sh $HOME/.git-prompt-colors.sh
+
+# Install Kitty terminal
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
+  dest=$DIR/local/tools/
+ln -s $HOME/local/tools/kitty.app/bin/kitty $HOME/bin/kitty
