@@ -27,7 +27,7 @@ export LANGUAGE=en_US.UTF-8
 export EDITOR=vim
 
 # Add custom tools to path
-export PATH=/home/tdragano/bin:$PATH
+export PATH=$HOME/bin:$PATH
 
 # Set default terminal
 export TERM=xterm-256color
