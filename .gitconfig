@@ -20,6 +20,7 @@
   co = checkout
   cp = cherry-pick
   df = diff
+  dt = difftool
   dfno = diff --name-only
   st = status
   status = status -uno
@@ -31,8 +32,8 @@
   }; f"
   uncommit = reset HEAD^
 [diff]
-  tool = bc3
-[difftool "bc3"]
+  tool = vimdiff
+[difftool "vimdiff"]
   trustExitCode = true
 [merge]
   tool = bc3
