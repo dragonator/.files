@@ -72,6 +72,11 @@ map <Leader>tv :TestVisit<cr>
 " Run last shell command
 map <Leader>1 :!!<cr>
 
+" Map Q to exit vim with an error code in diff mode
+if &diff
+  map Q :cquit<CR>
+endif
+
 " Set vim's working directory to the
 " current file's directory automatically
 autocmd BufEnter * lcd %:p:h
