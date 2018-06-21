@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/plugs')
 
 " Plugins
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'janko-m/vim-test'
@@ -90,9 +90,6 @@ set shell=/bin/bash
 
 " Automatically reload on file changes
 set autoread
-
-" Fancy status line (required for airline))
-set laststatus=2
 
 " Make backspace work like most other apps
 set backspace=2 
