@@ -36,7 +36,7 @@ export TERM=xterm-256color
 ##                         Aliases                          ##
 ##############################################################
 alias tree='tree -a --dirsfirst -I .git'
-alias grep='grep --color'
+alias grep='grep --color -n'
 alias ls='ls --color'
 alias ll='ls -l'
 alias la='ll -a'
