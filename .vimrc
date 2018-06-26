@@ -10,7 +10,7 @@ Plug 'janko-m/vim-test'
 
 " Syntax highlighting
 Plug 'KitN/nand2-vim-syn'
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -23,6 +23,7 @@ nnoremap <Leader>w  :w<CR>
 nnoremap <Leader>q  :q<CR>
 nnoremap <Leader>q1 :q!<CR>
 nnoremap <Leader>x  :x<CR>
+nnoremap <Leader>c  :SyntasticCheck<CR>
 nnoremap [b orequire 'byebug'; byebug<ESC>
 
 " Visual mode remaps
@@ -71,6 +72,18 @@ map <Leader>tv :TestVisit<cr>
 
 " Run last shell command
 map <Leader>1 :!!<cr>
+
+" Syntastic plugin
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 " Map Q to exit vim with an error code in diff mode
 if &diff
