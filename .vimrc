@@ -73,6 +73,10 @@ map <Leader>tv :TestVisit<cr>
 " Run last shell command
 map <Leader>1 :!!<cr>
 
+" Open step-definitions correctly
+map [f <C-W><C-d>
+map ]f <C-W><C-d><C-W>H
+
 " Syntastic plugin
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -207,3 +211,7 @@ set foldnestmax=1
 set foldmethod=syntax
 set nofoldenable
 " set foldclose=all
+
+" Splitting windows
+set splitbelow
+set splitright
