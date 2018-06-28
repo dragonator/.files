@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugs')
 
 " Plugins
+Plug 'christoomey/vim-tmux-navigator'                   " navigate vim and tmux with consistent set of mappings
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -32,12 +33,6 @@ vnoremap // y/<C-R>"<CR>
 " Remap keys for managing windows
 map <leader>v <C-W>v<C-W><Right>
 map <leader>s <C-W>s<C-W><Down>
-
-" Map keys for window navigation
-map <C-k> <C-W>k
-map <C-j> <C-W>j
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " Disable arrow keys in all modes
 nnoremap <Left> :echo "No left for you!"<CR>
