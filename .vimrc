@@ -1,212 +1,122 @@
-" Specify a directory for plugins
-call plug#begin('~/.vim/plugs')
-
-" Plugins
+call plug#begin('~/.vim/plugs')                         " vim-plug: start of install plugins section
 Plug 'christoomey/vim-tmux-navigator'                   " navigate vim and tmux with consistent set of mappings
-Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'janko-m/vim-test'
-"Plug 'fatih/vim-go'
+Plug 'vim-airline/vim-airline'                          " pretty status line
+Plug 'tpope/vim-endwise'                                " close code blocks for you: 'end' keyword, brakcets, etc.
+Plug 'tpope/vim-fugitive'                               " use GIT in VIM
+Plug 'tpope/vim-cucumber'                               " for opening step definitions out of feature files
+Plug 'janko-m/vim-test'                                 " run your tests inside VIM
+Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
+"Plug 'KitN/nand2-vim-syn'                              " syntax coloring for nand2tetris course
+"Plug 'fatih/vim-go'                                    " syntax coloring for GO langiage
+call plug#end()                                         " vim-plug: end of install plugins section
 
-" Syntax highlighting
-Plug 'KitN/nand2-vim-syn'
-Plug 'vim-syntastic/syntastic'
+map <Leader>tn :TestNearest<cr>|                        " vim-test: perform only the nearest test
+map <Leader>tf :TestFile<cr>|                           " vim-test: perform all tests in current file
+map <Leader>ts :TestSuite<cr>|                          " vim-test: perform all tests of current type
+map <Leader>tl :TestLast<cr>|                           " vim-test: perform last executed test
+map <Leader>tv :TestVisit<cr>|                          " vim-test: open the file with tests
 
-call plug#end()
+map [f <C-W><C-d>|                                      " vim-cucumber: open step-definition in split below
+map ]f <C-W><C-d><C-W>L|                                " vim-cucumber: open step-definition in split to the right
 
-" Syntax highlighting
-au BufNewFile,BufRead *.gradle set filetype=groovy
-autocmd BufNewFile,BufRead *.hdl   set syntax=hdl
+set statusline+=%#warningmsg#                           " TODO
+set statusline+=%{SyntasticStatuslineFlag()}            " TODO
+set statusline+=%*                                      " TODO
 
-" Normal mode remaps
-nnoremap <Leader>w  :w<CR>
-nnoremap <Leader>q  :q<CR>
-nnoremap <Leader>q1 :q!<CR>
-nnoremap <Leader>x  :x<CR>
-nnoremap <Leader>c  :SyntasticCheck<CR>
-nnoremap [b orequire 'byebug'; byebug<ESC>
+let g:syntastic_always_populate_loc_list = 1            " syntastic: add all valuations to the location list
+let g:syntastic_auto_loc_list = 1                       " syntastic: show list of valuations in a pane below
+let g:syntastic_check_on_open = 0                       " syntastic: don't execute syntastic on file opening
+let g:syntastic_check_on_wq = 0                         " syntastic: don't execute syntastic on save&exit
+let g:syntastic_mode_map = { "mode": "passive" }        " syntastic: don't execute syntastic automatically
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']      " syntastic: checkers for Ruby code
+nnoremap <Leader>c  :SyntasticCheck<CR>|                " syntastic: manually execute syntastic checkers
 
-" Visual mode remaps
-vnoremap // y/<C-R>"<CR>
+map <Leader>v <C-W>v<C-W><Right>|                       " \s to open split window below
+map <Leader>s <C-W>s<C-W><Down>|                        " \v to open split window to the right
+map <Leader>1  :!!<CR>|                                 " \1 to rerun last shell command
 
-" Remap keys for managing windows
-map <leader>v <C-W>v<C-W><Right>
-map <leader>s <C-W>s<C-W><Down>
+nnoremap <Leader>w  :w<CR>|                             " \w to save the current file
+nnoremap <Leader>q  :q<CR>|                             " \q to quit the current file
+nnoremap <Leader>x  :x<CR>|                             " \x to save and quit the current file
+nnoremap <Leader>q1 :q!<CR>|                            " \q1 to quit without saving the current file
+nnoremap [b orequire 'byebug'; byebug<ESC>|             " [b to call byebug in the line below
 
-" Disable arrow keys in all modes
-nnoremap <Left> :echo "No left for you!"<CR>
-vnoremap <Left> :<C-u>echo "No left for you!"<CR>
-inoremap <Left> <C-o>:echo "No left for you!"<CR>
-nnoremap <Right> :echo "No right for you!"<CR>
-vnoremap <Right> :<C-u>echo "No right for you!"<CR>
-inoremap <Right> <C-o>:echo "No right for you!"<CR>
-nnoremap <Down> :echo "No down for you!"<CR>
-vnoremap <Down> :<C-u>echo "No down for you!"<CR>
-inoremap <Down> <C-o>:echo "No down for you!"<CR>
-nnoremap <Up> :echo "No up for you!"<CR>
-vnoremap <Up> :<C-u>echo "No up for you!"<CR>
-inoremap <Up> <C-o>:echo "No up for you!"<CR>
+vnoremap // y/<C-R>"<CR>                                " // in VISUAL mode to search the selected text
 
-" Run RSpec tests
-map <Leader>rf :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec rspec --format documentation " . expand('%:p')<cr>
-map <Leader>rl :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec rspec " . expand('%:p') . ":" . line(".")<cr>
-map <Leader>rt :w<cr>:!cd `git rev-parse --show-toplevel` && bundle exec rspec --format documentation<cr>
+nnoremap <Left>  :     echo "No left for you!"<CR>      " disable left arrow in NORMAL mode
+vnoremap <Left>  :<C-u>echo "No left for you!"<CR>      " disable left arrow in VISUAL mode
+inoremap <Left>  <C-o>:echo "No left for you!"<CR>      " disable left arrow in INSERT mode
+nnoremap <Right> :     echo "No right for you!"<CR>     " disable right arrow in NORMAL mode
+vnoremap <Right> :<C-u>echo "No right for you!"<CR>     " disable right arrow in VISUAL mode
+inoremap <Right> <C-o>:echo "No right for you!"<CR>     " disable right arrow in INSERT mode
+nnoremap <Down>  :     echo "No down for you!"<CR>      " disable down arrow in NORMAL mode
+vnoremap <Down>  :<C-u>echo "No down for you!"<CR>      " disable down arrow in VISUAL mode
+inoremap <Down>  <C-o>:echo "No down for you!"<CR>      " disable down arrow in INSERT mode
+nnoremap <Up>    :     echo "No up for you!"<CR>        " disable up arrow in NORMAL mode
+vnoremap <Up>    :<C-u>echo "No up for you!"<CR>        " disable up arrow in VISUAL mode
+inoremap <Up>    <C-o>:echo "No up for you!"<CR>        " disable up arrow in INSERT mode
 
-" Run Cucumber tests
-map <Leader>cf :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec cucumber " . expand('%:p')<cr>
-map <Leader>cl :w<cr>:exe "!cd `git rev-parse --show-toplevel` && bundle exec cucumber " . expand('%:p') . ":" . line(".")<cr>
-map <Leader>ct :w<cr>:!cd `git rev-parse --show-toplevel` && bundle exec cucumber<cr>
+syntax enable                                           " enable syntax highlightning
+colorscheme seoul256                                    " select a colorscheme
+set background=dark                                     " set dark background
+set autochdir                                           " change working dir to parent of current file
+set shell=/bin/bash                                     " set vim shell to bash
+set autoread                                            " automatically reload on file changes
+set backspace=2                                         " make backspace work like most other apps
+set incsearch                                           " show match during search
+set ignorecase                                          " case-insensitive search if all lowercase
+set smartcase                                           " case-sensitive search if some uppercase
+set hlsearch                                            " highlight all search matches
+set mouse=a                                             " enable mouse in all modes
+set ttymouse=sgr                                        " SGR-styled mouse input (works beyond 223 column)
+set clipboard=unnamedplus                               " use system clipboard
+set history=50                                          " set command-line history buffer size
+"set showcmd                                            " display incomplete commands
+set noshowmode                                          " dont show current mode; airline does it
+set scrolloff=4                                         " minimum number of screen lines showing around the cursor
+set wildmenu                                            " enable command-line completion
+set wildmode=longest,list                               " command-line completion menu
+set completefunc=syntaxcomplete#Complete                " insert completion function
+set completeopt=longest,menuone,preview                 " insert completion menu
+set showmatch                                           " show matching parenthesis (brackets)
+set matchtime=1                                         " 1/10 of a second to show matching bracket
+set encoding=utf-8                                      " set overal vim encoding to UTF-8
+"set title                                               "
+"let &titleold=getcwd()                                  "
+set tabstop=2                                           " number of spaces per Tab
+set shiftwidth=2                                        " number of spaces to shift
+set expandtab                                           " write spaces i.s.o. tab (<C-V>Tab for real tab)
+set smartindent                                         " well...smart indent
+set autoindent                                          " automatically indent in certain cases
+set nobackup                                            " don't create backups
+set nowritebackup                                       " don't create backups when overwriting files
+set noswapfile                                          " don't create swap files for buffers
+"set noerrorbells                                        "
+"visualbell t_vb=                                        " disable beeping
+set nowrap                                              " disable line wrap
+set cursorline                                          " highlight cursor line
+set cursorcolumn                                        " highlight cursor column
+set ruler                                               " show line and column of the cursor position
+set ttimeout                                            " timeout on key codes (faster escaping of INSERT mode)
+set ttimeoutlen=70                                      " timeout lenght
+set splitbelow                                          " show new split window below
+set splitright                                          " show new split window on the right
+set ttimeoutlen=70                                      " timeout length
+set number                                              " show current line number i.s.o. 0 (hybrid numbers)
 
-" Generic mapping for running tests
-map <Leader>tn :TestNearest<cr>
-map <Leader>tf :TestFile<cr>
-map <Leader>ts :TestSuite<cr>
-map <Leader>tl :TestLast<cr>
-map <Leader>tv :TestVisit<cr>
+" Automatic settings
+autocmd BufEnter    * set relativenumber                " turn on relative numbers in the new buffer when switching buffers
+autocmd FocusGained * set relativenumber                " turn on relative numbers in focused buffer
+autocmd InsertLeave * set relativenumber                " turn on relative numbers when leaving INSERT mode
+autocmd BufLeave    * set norelativenumber              " turn off relative numbers in the old buffer when switching buffers
+autocmd FocusLost   * set norelativenumber              " turn off relative numbers when buffer is loosing focus
+autocmd InsertEnter * set norelativenumber              " turn off relative numbers when entering INSERT mode
+autocmd BufNewFile  *.gradle set filetype=groovy        " use groovy as filetype when creating new *.gradle files
+autocmd BufRead     *.gradle set filetype=groovy        " use groovy as filetype when opening existing *.gradle files
+autocmd BufNewFile  *.hdl    set syntax=hdl             " use hdl syntax when creating new *.hdl files
+autocmd BufRead     *.hdl    set syntax=hdl             " use hdl syntax when opening existing *.hdl files
 
-" Run last shell command
-map <Leader>1 :!!<cr>
-
-" Open step-definitions correctly
-map [f <C-W><C-d>
-map ]f <C-W><C-d><C-W>H
-
-" Syntastic plugin
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-
-" Map Q to exit vim with an error code in diff mode
+" map Q to exit vim with an error code in diff mode
 if &diff
   map Q :cquit<CR>
 endif
-
-" Set vim's working directory to the
-" current file's directory automatically
-autocmd BufEnter * lcd %:p:h
-
-" Automatically attempt to set the working directory to the current
-" file. This value will be superceeded by rooter if it is installed
-set autochdir
-
-" Ensure vim uses bash
-set shell=/bin/bash
-
-" Automatically reload on file changes
-set autoread
-
-" Make backspace work like most other apps
-set backspace=2 
-
-" Search options
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
-
-"Enable mouse support
-"set ttymouse=sgr
-set mouse=a
-
-" Command line history
-set history=50
-
-" Display incomplete commands
-set showcmd
-
-" Dont show current mode 
-" It's being displayed by the powerline plugin
-set noshowmode
-
-" Minimum number of screen lines above and below the cursor
-set scrolloff=4
-
-" Command's auto completion
-set wildmenu
-set wildmode=longest,list
-
-" Completion options
-set completefunc=syntaxcomplete#Complete
-set completeopt=longest,menuone,preview
-
-" Matching braces
-set showmatch
-set matchtime=1
-
-" Default encoding
-set encoding=utf-8
-
-" Fancy title, based on opened file
-set title
-let &titleold=getcwd()
-
-" Tab stuff
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-
-" Indent stuff
-set smartindent
-set autoindent
-
-" Disable the silly backups, we're not 90's
-set nobackup
-set noswapfile
-set nowritebackup
-
-" Show hybrid line numbers on focused window
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-" Colors
-syntax enable
-set background=dark
-colorscheme seoul256
-
-" Disable beeping
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
-" Diasable wrapping
-set nowrap
-
-" Removes menu bar and toolbar
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-
-" Show the cursor position all the time
-set cursorline cursorcolumn
-set ruler
-
-" Use system clipboard
-set clipboard=unnamedplus
-
-" Fasting escaping out of insert mode
-set ttimeout
-set ttimeoutlen=100
-set timeoutlen=3000
-
-" Folding
-set foldnestmax=1
-set foldmethod=syntax
-set nofoldenable
-" set foldclose=all
-
-" Splitting windows
-set splitbelow
-set splitright
