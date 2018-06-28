@@ -47,3 +47,5 @@
   decorate = auto
 [includeIf "gitdir:**/tdragano/**"]
   path = ~/.gitconfig-work
+[push]
+  default = simple
