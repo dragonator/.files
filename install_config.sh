@@ -30,8 +30,3 @@ ln -s $HOME/local/bin $HOME/bin
 # Install and configure bash-git-prompt
 git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
 ln -s $DIR/.git-prompt-colors.sh $HOME/.git-prompt-colors.sh
-
-# Install Kitty terminal
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
-  dest=$DIR/local/tools/
-ln -s $HOME/local/tools/kitty.app/bin/kitty $HOME/bin/kitty
