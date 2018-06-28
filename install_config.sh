@@ -16,6 +16,7 @@ echo "source $DIR/.git_bashrc.sh"    >> $HOME/.bashrc
 
 # Others
 ln -s $DIR/.tmux.conf        $HOME/.tmux.conf
+ln -s $DIR/.tmux             $HOME/.tmux
 ln -s $DIR/.tmux-themepack   $HOME/.tmux-themepack
 ln -s $DIR/.gitconfig        $HOME/.gitconfig
 ln -s $DIR/.inputrc          $HOME/.inputrc
