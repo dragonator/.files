@@ -23,6 +23,9 @@ alias gdifno="git diff --name-only"
 alias gst="git status"
 alias gad="git add"
 alias gadd="git add"
+alias disable_fetch="echo 'FETCH_REMOTE_STATUS=0' >> .bash-git-rc"
+alias disable_prompt="echo 'GIT_PROMPT_IGNORE=1'  >> .bash-git-rc"
+alias restore_prompt="\\rm .bash-git-rc"
 
 ##############################################################
 ##                       Functions                          ##
