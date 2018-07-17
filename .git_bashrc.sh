@@ -23,9 +23,6 @@ alias gdifno="git diff --name-only"
 alias gst="git status"
 alias gad="git add"
 alias gadd="git add"
-alias disable_fetch="echo 'FETCH_REMOTE_STATUS=0' >> .bash-git-rc"
-alias disable_prompt="echo 'GIT_PROMPT_IGNORE=1'  >> .bash-git-rc"
-alias restore_prompt="\\rm .bash-git-rc"
 
 ##############################################################
 ##                       Functions                          ##
@@ -37,3 +34,7 @@ function non_empty_clone
     git fetch
     git checkout -t origin/master
 }
+
+function disable_fetch()  { echo 'FETCH_REMOTE_STATUS=0' >> `git rev-parse --show-toplevel`/.bash-git-rc ; }
+function disable_prompt() { echo 'GIT_PROMPT_IGNORE=1'   >> `git rev-parse --show-toplevel`/.bash-git-rc ; }
+function restore_prompt() { rm -f `git rev-parse --show-toplevel`/.bash-git-rc ; }
