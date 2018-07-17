@@ -20,6 +20,7 @@ echo >> $HOME/.bashrc
 echo "source $DIR/.custom_bashrc.sh" >> $HOME/.bashrc
 echo "source $DIR/.ruby_bashrc.sh"   >> $HOME/.bashrc
 echo "source $DIR/.git_bashrc.sh"    >> $HOME/.bashrc
+echo "sanitize_path"                 >> $HOME/.bashrc
 git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
 ln -s $DIR/.git-prompt-colors.sh $HOME/.git-prompt-colors.sh
 
