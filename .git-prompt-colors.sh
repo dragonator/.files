@@ -5,15 +5,14 @@
 override_git_prompt_colors() {
   GIT_PROMPT_THEME_NAME="Custom"
 
-  # Time12a="\$(date +%H:%M)"
-  # PathShort="\w";
-
-  # Additional colors
+  # ANSI/VT100 Control sequences
   Bold="\[\e[1m\]"
   Yellow="\[\e[38;5;178m\]"
   Blue="\[\e[38;5;110m\]"
+  Red="\[\e[31m\]"
   BoldYellow="${Bold}${Yellow}"
   BoldBlue="${Bold}${Blue}"
+  BoldRed="${Bold}${Red}"
 
   ## These are the color definitions used by gitprompt.sh
   # GIT_PROMPT_LEADING_SPACE=0
@@ -52,10 +51,10 @@ override_git_prompt_colors() {
   # the name of the current remote tracking branch
   # GIT_PROMPT_UPSTREAM=" {${Blue}_UPSTREAM_${ResetColor}}"
 
-  ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-  GIT_PROMPT_START_USER="${BoldYellow}\w${ResetColor}"
+  if [ -n "$CLEARCASE_ROOT" ]; then CLEARCASE_VIEW=" [ $(basename $CLEARCASE_ROOT) ]"; fi
+  GIT_PROMPT_START_USER="${BoldYellow}\w${ResetColor}${BoldRed}${CLEARCASE_VIEW}${ResetColor}"
   GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}${Red}(root) ${ResetColor}"
-  # GIT_PROMPT_END_USER=" \n${White}${Time12a}${ResetColor} $ "
+  ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
   GIT_PROMPT_END_USER="\n_LAST_COMMAND_INDICATOR_ "
   GIT_PROMPT_END_ROOT="${GIT_PROMPT_END_USER}"
 
