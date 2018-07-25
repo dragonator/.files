@@ -4,6 +4,7 @@ Plug 'vim-airline/vim-airline'                          " pretty status line
 Plug 'tpope/vim-endwise'                                " close code blocks for you: 'end' keyword, brakcets, etc.
 Plug 'tpope/vim-fugitive'                               " use GIT in VIM
 Plug 'tpope/vim-cucumber'                               " for opening step definitions out of feature files
+Plug 'vim-ruby/vim-ruby'                                " ruby support
 Plug 'janko-m/vim-test'                                 " run your tests inside VIM
 Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
 "Plug 'KitN/nand2-vim-syn'                              " syntax coloring for nand2tetris course
