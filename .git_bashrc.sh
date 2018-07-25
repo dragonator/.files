@@ -19,10 +19,12 @@ source ~/.bash-git-prompt/gitprompt.sh
 alias glog="git log -n 15 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gdif="git diff"
 alias gdiff="git diff"
+alias gdifc="git diff --cached"
 alias gdifno="git diff --name-only"
 alias gst="git status"
 alias gad="git add"
 alias gadd="git add"
+alias gcom="git commit -m"
 
 ##############################################################
 ##                       Functions                          ##
