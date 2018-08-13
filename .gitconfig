@@ -15,13 +15,12 @@
   aa = add --all
   br = branch
   cl = clone
-  br = branch
-  cl = clone
   co = checkout
   cp = cherry-pick
   df = diff
   dt = difftool
   dfno = diff --name-only
+  netlog = log -n 15 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   st = status
   status = status -uno
   uncommit = reset HEAD^

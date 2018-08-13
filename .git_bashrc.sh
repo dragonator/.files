@@ -16,7 +16,7 @@ source ~/.bash-git-prompt/gitprompt.sh
 ##############################################################
 ##                          Aliases                         ##
 ##############################################################
-alias glog="git log -n 15 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glog="git netlog"
 alias gdif="git diff"
 alias gdiff="git diff"
 alias gdifc="git diff --cached"
