@@ -7,6 +7,7 @@ Plug 'tpope/vim-cucumber'                               " for opening step defin
 Plug 'vim-ruby/vim-ruby'                                " ruby support
 Plug 'janko-m/vim-test'                                 " run your tests inside VIM
 Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
+Plug 'AndrewRadev/linediff.vim'
 "Plug 'KitN/nand2-vim-syn'                              " syntax coloring for nand2tetris course
 "Plug 'fatih/vim-go'                                    " syntax coloring for GO langiage
 call plug#end()                                         " vim-plug: end of install plugins section
