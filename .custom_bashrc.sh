@@ -57,12 +57,10 @@ shopt -s globstar
 # Source bash completion for alacritty
 source $HOME/.config/alacritty/alacritty-completions.bash
 
-# Completion for code function
+# Complete $CODE_DIR directory entries
 __code_complete() {
-    local cur;
-    cur=$(join_by / "${COMP_WORDS[@]}" | sed -e 's/code\///')
-    match_result="$CODE_DIR/$cur"
-    COMPREPLY=( $(compgen -d "$match_result" | sed -e 's,'".*/"',,'))
+  local cur=$(join_by / "${COMP_WORDS[@]}" | sed -e 's/code\///')
+  COMPREPLY=( $(compgen -d "$CODE_DIR/$cur" | sed -e 's,'".*/"',,'))
 }
 
 complete -F __code_complete code
@@ -70,27 +68,19 @@ complete -F __code_complete code
 ##############################################################
 ##                        Functions                         ##
 ##############################################################
-# Shortcut to code (sub)directory
-function code() {
-    local code_subdir
-    code_subdir=$(join_by / "$@")
-    cd "$CODE_DIR/$code_subdir"
-}
-
-function join_by() { local IFS="$1"; shift; echo "$*"; }
-
-# Extract rpm in curent directory
-function xrpm() { rpm2cpio "$1" | cpio -idmv ; }
+function join_by()      { local IFS="$1"; shift; echo "$*" ; }
+function code()         { cd "$CODE_DIR/$(join_by / "$@")" ; }
+function xrpm()         { rpm2cpio "$1" | cpio -idmv       ; }
 
 # Remove duplicated entries in PATH
 function sanitize_path() {
   if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
     while [ -n "$old_PATH" ]; do
-      x=${old_PATH%%:*}       # the first remaining entry
+      x=${old_PATH%%:*}     # the first remaining entry
       case $PATH: in
-        *:"$x":*) ;;         # already there
-        *) PATH=$PATH:$x;;    # not there yet
+        *:"$x":*) ;;        # already there
+        *) PATH=$PATH:$x;;  # not there yet
       esac
       old_PATH=${old_PATH#*:}
     done
