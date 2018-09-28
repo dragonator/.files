@@ -28,12 +28,12 @@
   tool = vimdiff
 [difftool "vimdiff"]
   trustExitCode = true
+[difftool]
+  prompt = false
 [merge]
   tool = bc3
 [mergetool "bc3"]
   trustExitCode = true
-[difftool]
-  prompt = false
 [format]
   pretty = oneline
 [log]
