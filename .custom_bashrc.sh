@@ -55,9 +55,6 @@ shopt -s globstar
 ##############################################################
 ##                     Bash Completions                     ##
 ##############################################################
-# Source bash completion for alacritty
-source $HOME/.config/alacritty/alacritty-completions.bash
-
 # Complete $CODE_DIR directory entries
 __code_complete() {
   local cur=$(join_by / "${COMP_WORDS[@]}" | sed -e 's/code\///')

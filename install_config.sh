@@ -29,7 +29,6 @@ ln -s $DIR/.git-prompt-colors.sh $HOME/.git-prompt-colors.sh
 # Others
 ln -s $DIR/.gitconfig        $HOME/.gitconfig
 ln -s $DIR/.inputrc          $HOME/.inputrc
-ln -s $DIR/.config/alacritty $HOME/.config/alacritty
 
 # Create local structure
 mkdir -p $HOME/local/bin
