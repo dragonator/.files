@@ -31,7 +31,7 @@ export EDITOR=vim
 export PATH=$HOME/bin:$PATH
 
 # Set default terminal
-export TERM=xterm-256color
+export TERM=tmux-256color
 
 ##############################################################
 ##                         Aliases                          ##
