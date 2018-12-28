@@ -19,6 +19,7 @@ ln -s $DIR/.tmux-themepack $HOME/.tmux-themepack
 echo >> $HOME/.bashrc
 echo "eval \"\$(jump shell)\""       >> $HOME/.bashrc
 echo "eval \"\$(thefuck --alias)\""  >> $HOME/.bashrc
+echo "eval \"\$(rbenv init -)\""     >> $HOME/.bashrc
 echo "source $DIR/.custom_bashrc.sh" >> $HOME/.bashrc
 echo "source $DIR/.ruby_bashrc.sh"   >> $HOME/.bashrc
 echo "source $DIR/.git_bashrc.sh"    >> $HOME/.bashrc
