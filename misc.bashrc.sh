@@ -14,24 +14,8 @@ CODE_DIR="$HOME/code"
 ##############################################################
 ##                    Export Variables                      ##
 ##############################################################
-# Turn off python byte code (*.pyc)
-export PYTHONDONTWRITEBYTECODE=1
-export PYTHONIOENCODING="UTF-8"
-
-# Enable UTF-8 support in Gnome Terminal
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.utf8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-
 # Set vim as default editor
 export EDITOR=vim
-
-# Add custom tools to path
-export PATH=$HOME/bin:$PATH
-
-# Set default terminal
-export TERM=tmux-256color
 
 ##############################################################
 ##                         Aliases                          ##
@@ -42,14 +26,13 @@ alias ls='ls --color'
 alias ll='ls -ltrh'
 alias la='ll -a'
 alias lla='la'
-alias google='googler'
 alias .files='cd ~/.files'
 alias .f='.files'
 
 ##############################################################
 ##                          Others                          ##
 ##############################################################
-# Set "**" to match all files and zero or more directories and subdirectories.
+# Set "**" to match all files and zero or more (sub)directories
 shopt -s globstar
 
 ##############################################################
@@ -66,8 +49,13 @@ complete -F __code_complete code
 ##############################################################
 ##                        Functions                         ##
 ##############################################################
+# Used internally in bash completion functions
 function join_by()      { local IFS="$1"; shift; echo "$*" ; }
+
+# Go to code/<subdirectory>
 function code()         { cd "$CODE_DIR/$(join_by / "$@")" ; }
+
+# RPM extraction
 function xrpm()         { rpm2cpio "$1" | cpio -idmv       ; }
 
 # Remove duplicated entries in PATH

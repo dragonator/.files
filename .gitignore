@@ -1,2 +1,3 @@
-.vim/plugs/*
-.tmux/plugins/*
+vim/plugs/*
+tmux
+bash-git-prompt
