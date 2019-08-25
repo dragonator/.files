@@ -29,16 +29,15 @@ rm -rf $DIR/bash-git-prompt
 rm -rf $DIR/rbenv
 
 # Uninstall packages
-echo "-> Removing tree"
-sudo apt remove --assume-yes tree  ; echo
-echo "-> Removing vim"
-sudo apt remove --assume-yes vim   ; echo
-echo "-> Removing tmux"
-sudo apt remove --assume-yes tmux  ; echo
-echo "-> Removing git"
-sudo apt remove --assume-yes git   ; echo
-echo "-> Removing xclip"
-sudo apt remove --assume-yes xclip ; echo
+PACKAGES=(git tree vim tmux xclip fonts-firacode curl)
+RUBY_BUILD_DEPS=(gcc make libssl-dev libreadline-dev zlib1g-dev)
+
+for pkg in ${PACKAGES[@]} ${RUBY_BUILD_DEPS[@]}; do
+  echo "-> Removing ${pkg}"
+  sudo apt install --assume-yes $pkg
+  echo
+done
+
 echo "-> Autoremoving packages"
 sudo apt autoremove --assume-yes
 
