@@ -25,20 +25,18 @@ echo
 ##############################################################
 ##                     Install packages                     ##
 ##############################################################
+PACKAGES=(git tree vim tmux xclip)
+RUBY_BUILD_DEPS=(libssl-dev libreadline-dev zlib1g-dev)
+
 echo "=> Updating apt cache"
 sudo apt update
-echo "=> Installing tree"
-sudo apt install --assume-yes tree  ; echo
-echo "=> Installing vim"
-sudo apt install --assume-yes vim   ; echo
-echo "=> Installing tmux"
-sudo apt install --assume-yes tmux  ; echo
-echo "=> Installing git"
-sudo apt install --assume-yes git   ; echo
-echo "=> Installing xclip"
-sudo apt install --assume-yes xclip ; echo
-echo "=> Installing ruby-build dependencies"
-sudo apt install --assume-yes libssl-dev libreadline-dev zlib1g-dev ; echo
+
+for pkg in ${PACKAGES[@]} ${RUBY_BUILD_DEPS[@]}; do
+  echo "=> Installing ${pkg}"
+  sudo apt install --assume-yes $pkg
+  echo
+done
+
 echo "=> Autoremoving packages"
 sudo apt autoremove --assume-yes    ; echo
 
