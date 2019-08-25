@@ -74,5 +74,3 @@ function sanitize_path() {
     unset old_PATH x
   fi
 }
-
-sanitize_path
