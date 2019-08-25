@@ -160,11 +160,6 @@ if ! grep "master.bashrc.sh" $HOME/.bashrc ; then
 fi
 echo
 
-# Create local structure
-#mkdir -pv $HOME/local/bin
-#mkdir -pv $HOME/local/tools
-#ln -sTfv $HOME/local/bin $HOME/bin
-
 echo "=> Miscellaneous"
 mkdir -pv $HOME/code
 ln -sTfv $DIR/inputrc $HOME/.inputrc
