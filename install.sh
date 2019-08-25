@@ -11,7 +11,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #mkdir -p $HOME/local/tools
 #ln -sTf $HOME/local/bin $HOME/bin
 mkdir -p $HOME/code
-ls -sTf $DIR/inputrc $HOME/.inputrc
+ln -sTf $DIR/inputrc $HOME/.inputrc
 
 echo "=> Sourcing master.bashrc.sh"
 SOURCE_MASTER_BASHRC="""
