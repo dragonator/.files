@@ -14,7 +14,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ##                     Install packages                     ##
 ##############################################################
 echo "=> Installing packages"
-PACKAGES=(git tree vim tmux xclip fonts-firacode)
+PACKAGES=(git tree vim tmux xclip fonts-firacode curl)
 RUBY_BUILD_DEPS=(gcc make libssl-dev libreadline-dev zlib1g-dev)
 
 echo "-> Add universe repository"
@@ -93,6 +93,13 @@ echo
 
 echo "-> Updating bash-git-prompt"
 git -C $BASH_GIT_PROMPT_DIR pull
+echo
+
+##############################################################
+##                           Kitty                          ##
+##############################################################
+echo "=> Installing Kitty"
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 echo
 
 ##############################################################
