@@ -22,7 +22,7 @@ export EDITOR=vim
 ##############################################################
 alias tree='tree -a --dirsfirst -I .git'
 alias ls='tree -L 1'
-alias ll='ls -ltrh'
+alias ll='\ls -ltrh --color'
 alias la='ll -a'
 alias lla='la'
 alias grep='grep --color -n'
