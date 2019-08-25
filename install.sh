@@ -7,28 +7,9 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
-##############################################################
-##                      Miscellaneous                       ##
-##############################################################
 # Get directory of current script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Create local structure
-#mkdir -p $HOME/local/bin
-#mkdir -p $HOME/local/tools
-#ln -sTf $HOME/local/bin $HOME/bin
-mkdir -p $HOME/code
-ln -sTf $DIR/inputrc $HOME/.inputrc
-
-echo "-> Sourcing master.bashrc.sh"
-SOURCE_MASTER_BASHRC="""
-# Source custom configuration
-source $HOME/.files/master.bashrc.sh"""
-if ! grep "master.bashrc.sh" $HOME/.bashrc ; then
-    echo "$SOURCE_MASTER_BASHRC" >> $HOME/.bashrc
-fi
-
-echo
 ##############################################################
 ##                     Install packages                     ##
 ##############################################################
@@ -148,6 +129,28 @@ echo "-> Installing Bundler"
 $RBENV_DIR/shims/gem install bundler
 echo
 
+##############################################################
+##                      Miscellaneous                       ##
+##############################################################
+SOURCE_MASTER_BASHRC="""
+# Source custom configuration
+source $HOME/.files/master.bashrc.sh"""
+
+echo "=> Sourcing master.bashrc.sh"
+if ! grep "master.bashrc.sh" $HOME/.bashrc ; then
+    echo "$SOURCE_MASTER_BASHRC" >> $HOME/.bashrc
+fi
 echo
+
+# Create local structure
+#mkdir -pv $HOME/local/bin
+#mkdir -pv $HOME/local/tools
+#ln -sTfv $HOME/local/bin $HOME/bin
+
+echo "=> Miscellaneous"
+mkdir -pv $HOME/code
+ln -sTfv $DIR/inputrc $HOME/.inputrc
+echo
+
 ##############################################################
 echo "=> Finished."
