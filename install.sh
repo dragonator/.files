@@ -32,8 +32,11 @@ echo
 ##############################################################
 ##                     Install packages                     ##
 ##############################################################
-PACKAGES=(git tree vim tmux xclip)
+PACKAGES=(git tree vim tmux xclip fonts-firacode)
 RUBY_BUILD_DEPS=(libssl-dev libreadline-dev zlib1g-dev)
+
+echo "-> Add universe repository"
+sudo add-apt-repository universe
 
 echo "-> Updating apt cache"
 sudo apt update ; echo 
