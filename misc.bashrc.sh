@@ -21,11 +21,11 @@ export EDITOR=vim
 ##                         Aliases                          ##
 ##############################################################
 alias tree='tree -a --dirsfirst -I .git'
-alias grep='grep --color -n'
-alias ls='ls --color'
+alias ls='tree -L 1'
 alias ll='ls -ltrh'
 alias la='ll -a'
 alias lla='la'
+alias grep='grep --color -n'
 alias .files='cd ~/.files'
 alias .f='.files'
 

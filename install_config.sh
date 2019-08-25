@@ -25,6 +25,8 @@ echo
 ##############################################################
 ##                    Install applications                  ##
 ##############################################################
+echo "=> Installing tree"
+sudo apt install --assume-yes tree  ; echo
 echo "=> Installing vim"
 sudo apt install --assume-yes vim   ; echo
 echo "=> Installing tmux"
@@ -33,6 +35,7 @@ echo "=> Installing git"
 sudo apt install --assume-yes git   ; echo
 echo "=> Installing xclip"
 sudo apt install --assume-yes xclip ; echo
+sudo apt autoremove --assume-yes
 
 ##############################################################
 ##                          (N)Vim                          ##
