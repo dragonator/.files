@@ -61,10 +61,15 @@ ln -sTf $DIR/tmux           $HOME/.tmux
 ln -sTf $DIR/tmux-themepack $HOME/.tmux-themepack
 
 # Install TPM (Tmux Plugin Manager)
-echo "=> Installing TPM"
 TMUX_PLUGIN_DIR="$DIR/tmux/plugins"
 mkdir -p $TMUX_PLUGIN_DIR
-git clone https://github.com/tmux-plugins/tpm $TMUX_PLUGIN_DIR/tpm
+
+TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
+echo "=> Installing TPM"
+git clone https://github.com/tmux-plugins/tpm $TPM_DIR
+
+echo "=> Updating TPM"
+git -C $TPM_DIR pull
 
 # Install TPM plugins
 echo "=> Installing TPM Plugins"
@@ -81,8 +86,13 @@ echo "=> Configuring Git"
 ln -sTf $DIR/gitconfig $HOME/.gitconfig
 
 # Installing bash-git-prompt
+BASH_GIT_PROMPT_DIR="$DIR/bash-git-prompt"
 echo "=> Installing bash-git-prompt"
-git clone https://github.com/magicmonty/bash-git-prompt $DIR/bash-git-prompt
+git clone https://github.com/magicmonty/bash-git-prompt $BASH_GIT_PROMPT_DIR
+
+echo "=> Updating bash-git-prompt"
+git -C $BASH_GIT_PROMPT_DIR pull
+
 ln -sTf $DIR/bash-git-prompt      $HOME/.bash-git-prompt
 ln -sTf $DIR/git-prompt-colors.sh $HOME/.git-prompt-colors.sh
 
@@ -90,13 +100,23 @@ echo
 ##############################################################
 ##                            Ruby                          ##
 ##############################################################
+echo "=> Configuring Ruby"
+
 RBENV_DIR="$DIR/rbenv"
-echo "=> Cloning rbenv"
+echo "=> Installing rbenv"
 git clone https://github.com/rbenv/rbenv.git $RBENV_DIR
+
+echo "=> Updating rbenv"
+git -C $RBENV_DIR pull
+
 ln -sTf $RBENV_DIR $HOME/.rbenv
 
-echo "=> Cloning ruby-build"
-git clone https://github.com/rbenv/ruby-build.git $RBENV_DIR/plugins/ruby-build
+RUBY_BUILD_DIR="$RBENV_DIR/plugins/ruby-build"
+echo "=> Installing ruby-build"
+git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_DIR
+
+echo "=> Updating ruby-build"
+git -C $RUBY_BUILD_DIR pull
 
 RUBY_VERSION="2.6.3"
 echo "=> Installing Ruby v$RUBY_VERSION"
