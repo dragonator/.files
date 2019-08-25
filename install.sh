@@ -34,7 +34,7 @@ echo
 ##############################################################
 echo "-> Installing packages"
 PACKAGES=(git tree vim tmux xclip fonts-firacode)
-RUBY_BUILD_DEPS=(libssl-dev libreadline-dev zlib1g-dev)
+RUBY_BUILD_DEPS=(gcc make libssl-dev libreadline-dev zlib1g-dev)
 
 echo "-> Add universe repository"
 sudo add-apt-repository universe
