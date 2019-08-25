@@ -32,6 +32,7 @@ echo
 ##############################################################
 ##                     Install packages                     ##
 ##############################################################
+echo "-> Installing packages"
 PACKAGES=(git tree vim tmux xclip fonts-firacode)
 RUBY_BUILD_DEPS=(libssl-dev libreadline-dev zlib1g-dev)
 
