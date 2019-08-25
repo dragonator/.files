@@ -102,7 +102,7 @@ echo
 mkdir -pv $HOME/bin
 ln -sTfv  $DIR/config/kitty                 $HOME/.config/kitty
 ln -sTfv  $HOME/.local/kitty.app/bin/kitty  $HOME/bin/kitty
-cp -v     $DIR/config/kitty/kitty.desktop   $LOCAL_APPLICATIONS
+cp -v     $DIR/config/kitty/kitty.desktop   $LOCAL_APPLICATIONS/kitty.desktop
 sed -i    "s/USER/$USER/g"                  $LOCAL_APPLICATIONS/kitty.desktop
 cp -v     $LOCAL_APPLICATIONS/kitty.desktop $HOME/.local/kitty.app/share/applications/
 chmod -v  u+x $LOCAL_APPLICATIONS/kitty.desktop
