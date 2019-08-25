@@ -23,6 +23,18 @@ fi
 
 echo
 ##############################################################
+##                    Install applications                  ##
+##############################################################
+echo "=> Installing vim"
+sudo apt install --assume-yes vim   ; echo
+echo "=> Installing tmux"
+sudo apt install --assume-yes tmux  ; echo
+echo "=> Installing git"
+sudo apt install --assume-yes git   ; echo
+echo "=> Installing xclip"
+sudo apt install --assume-yes xclip ; echo
+
+##############################################################
 ##                          (N)Vim                          ##
 ##############################################################
 echo "=> Configuring Vim"
@@ -73,17 +85,24 @@ ln -sTf $DIR/git-prompt-colors.sh $HOME/.git-prompt-colors.sh
 
 echo
 ##############################################################
-##                    Install applications                  ##
+##                            Ruby                          ##
 ##############################################################
-echo "=> Installing vim..."
-sudo apt-get install --assume-yes vim   ; echo
-echo "=> Installing tmux..."
-sudo apt-get install --assume-yes tmux  ; echo
-echo "=> Installing git..."
-sudo apt-get install --assume-yes git   ; echo
-echo "=> Installing rbenv..."
-sudo apt-get install --assume-yes rbenv ; echo
-echo "=> Installing xclip..."
-sudo apt-get install --assume-yes xclip ; echo
+RBENV_DIR="$DIR/rbenv"
+echo "=> Cloning rbenv"
+git clone https://github.com/rbenv/rbenv.git $RBENV_DIR
+ln -sTf $RBENV_DIR $HOME/.rbenv
 
+echo "=> Cloning ruby-build"
+git clone https://github.com/rbenv/ruby-build.git $RBENV_DIR/plugins/ruby-build
+
+RUBY_VERSION="2.6.3"
+echo "=> Installing Ruby v$RUBY_VERSION"
+$RBENV_DIR/bin/rbenv install $RUBY_VERSION
+$RBENV_DIR/bin/rbenv global  $RUBY_VERSION
+
+echo "=> Installing Bundler"
+$RBENV_DIR/shims/gem install bundler
+
+echo
+##############################################################
 echo "=] Finished."

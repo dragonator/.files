@@ -1,3 +1,4 @@
-vim/plugs/*
-tmux
 bash-git-prompt
+rbenv
+tmux
+vim/plugs/*
