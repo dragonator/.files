@@ -9,7 +9,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ##                     Install packages                     ##
 ##############################################################
 echo "=> Installing packages"
-PACKAGES=(git tree vim tmux xclip fonts-firacode curl)
+PACKAGES=(git tree vim tmux xclip fonts-firacode curl shellcheck)
 RUBY_BUILD_DEPS=(gcc make libssl-dev libreadline-dev zlib1g-dev)
 
 echo "-> Add universe repository"
