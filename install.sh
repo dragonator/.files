@@ -1,11 +1,6 @@
 #!/bin/bash
-
-# Require sudo rights
-if [[ $UID != 0 ]]; then
-    echo "Please run this script with sudo:"
-    echo "sudo $0 $*"
-    exit 1
-fi
+echo "The script needs sudo rights for package installation:"
+sudo echo
 
 # Get directory of current script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
