@@ -46,17 +46,13 @@ nnoremap [b orequire 'byebug'; byebug<ESC>|             " [b to call byebug in t
 vnoremap // y/<C-R>"<CR>                                " // in VISUAL mode to search the selected text
 
 nnoremap <Left>  :     echo "No left for you!"<CR>      " disable left arrow in NORMAL mode
-vnoremap <Left>  :<C-u>echo "No left for you!"<CR>      " disable left arrow in VISUAL mode
-inoremap <Left>  <C-o>:echo "No left for you!"<CR>      " disable left arrow in INSERT mode
 nnoremap <Right> :     echo "No right for you!"<CR>     " disable right arrow in NORMAL mode
-vnoremap <Right> :<C-u>echo "No right for you!"<CR>     " disable right arrow in VISUAL mode
-inoremap <Right> <C-o>:echo "No right for you!"<CR>     " disable right arrow in INSERT mode
-nnoremap <Down>  :     echo "No down for you!"<CR>      " disable down arrow in NORMAL mode
-vnoremap <Down>  :<C-u>echo "No down for you!"<CR>      " disable down arrow in VISUAL mode
-inoremap <Down>  <C-o>:echo "No down for you!"<CR>      " disable down arrow in INSERT mode
 nnoremap <Up>    :     echo "No up for you!"<CR>        " disable up arrow in NORMAL mode
+nnoremap <Down>  :     echo "No down for you!"<CR>      " disable down arrow in NORMAL mode
+vnoremap <Left>  :<C-u>echo "No left for you!"<CR>      " disable left arrow in VISUAL mode
+vnoremap <Right> :<C-u>echo "No right for you!"<CR>     " disable right arrow in VISUAL mode
 vnoremap <Up>    :<C-u>echo "No up for you!"<CR>        " disable up arrow in VISUAL mode
-inoremap <Up>    <C-o>:echo "No up for you!"<CR>        " disable up arrow in INSERT mode
+vnoremap <Down>  :<C-u>echo "No down for you!"<CR>      " disable down arrow in VISUAL mode
 
 syntax enable                                           " enable syntax highlightning
 colorscheme seoul256                                    " select a colorscheme
