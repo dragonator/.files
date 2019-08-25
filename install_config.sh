@@ -25,6 +25,8 @@ echo
 ##############################################################
 ##                    Install applications                  ##
 ##############################################################
+echo "=> Updating apt cache"
+sudo apt update
 echo "=> Installing tree"
 sudo apt install --assume-yes tree  ; echo
 echo "=> Installing vim"
@@ -35,6 +37,7 @@ echo "=> Installing git"
 sudo apt install --assume-yes git   ; echo
 echo "=> Installing xclip"
 sudo apt install --assume-yes xclip ; echo
+echo "=> Autoremoving packages"
 sudo apt autoremove --assume-yes
 
 ##############################################################
@@ -120,7 +123,7 @@ git -C $RUBY_BUILD_DIR pull
 
 RUBY_VERSION="2.6.3"
 echo "=> Installing Ruby v$RUBY_VERSION"
-$RBENV_DIR/bin/rbenv install $RUBY_VERSION
+$RBENV_DIR/bin/rbenv install --skip-existing $RUBY_VERSION
 $RBENV_DIR/bin/rbenv global  $RUBY_VERSION
 
 echo "=> Installing Bundler"
