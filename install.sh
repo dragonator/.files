@@ -138,8 +138,9 @@ $RBENV_DIR/bin/rbenv install --skip-existing $RUBY_VERSION
 $RBENV_DIR/bin/rbenv global $RUBY_VERSION
 echo
 
-echo "-> Installing Bundler"
+echo "-> Installing gems"
 $RBENV_DIR/shims/gem install bundler
+$RBENV_DIR/shims/gem install rubocop
 echo
 
 ##############################################################
