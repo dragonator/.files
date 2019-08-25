@@ -23,7 +23,7 @@ fi
 
 echo
 ##############################################################
-##                    Install applications                  ##
+##                     Install packages                     ##
 ##############################################################
 echo "=> Updating apt cache"
 sudo apt update
@@ -37,8 +37,10 @@ echo "=> Installing git"
 sudo apt install --assume-yes git   ; echo
 echo "=> Installing xclip"
 sudo apt install --assume-yes xclip ; echo
+echo "=> Installing ruby-build dependencies"
+sudo apt install --assume-yes libssl-dev libreadline-dev zlib1g-dev ; echo
 echo "=> Autoremoving packages"
-sudo apt autoremove --assume-yes
+sudo apt autoremove --assume-yes    ; echo
 
 ##############################################################
 ##                          (N)Vim                          ##
