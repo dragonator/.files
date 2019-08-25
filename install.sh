@@ -32,15 +32,17 @@ echo
 ##############################################################
 ##                     Install packages                     ##
 ##############################################################
-echo "-> Installing packages"
+echo "=> Installing packages"
 PACKAGES=(git tree vim tmux xclip fonts-firacode)
 RUBY_BUILD_DEPS=(gcc make libssl-dev libreadline-dev zlib1g-dev)
 
 echo "-> Add universe repository"
 sudo add-apt-repository universe
+echo
 
 echo "-> Updating apt cache"
-sudo apt update ; echo 
+sudo apt update
+echo
 
 for pkg in ${PACKAGES[@]} ${RUBY_BUILD_DEPS[@]}; do
   echo "-> Installing ${pkg}"
@@ -50,41 +52,40 @@ done
 
 echo "-> Autoremoving packages"
 sudo apt autoremove --assume-yes
-
 echo
+
 ##############################################################
 ##                          (N)Vim                          ##
 ##############################################################
-echo "-> Configuring Vim"
+echo "=> Configuring Vim"
+ln -sTfv $DIR/vimrc $HOME/.vimrc
+ln -sTfv $DIR/vim   $HOME/.vim
+echo
 
-# (N)Vim config
-ln -sTf $DIR/vimrc $HOME/.vimrc
-ln -sTf $DIR/vim   $HOME/.vim
-#ln -sTf $DIR/config/nvim $HOME/.config/nvim
+#ln -sTfv $DIR/config/nvim $HOME/.config/nvim
 echo "-> Installing Vim plugins"
 vim -c PlugInstall -c qa
-
 echo
+
 ##############################################################
 ##                           Tmux                           ##
 ##############################################################
-echo "-> Configuring Tmux"
-
-# Create symbolic links from $HOME to Tmux configuration files
-ln -sTf $DIR/tmux.conf      $HOME/.tmux.conf
-ln -sTf $DIR/tmux           $HOME/.tmux
-ln -sTf $DIR/tmux-themepack $HOME/.tmux-themepack
-
-# Install TPM (Tmux Plugin Manager)
+echo "=> Configuring Tmux"
 TMUX_PLUGIN_DIR="$DIR/tmux/plugins"
-mkdir -p $TMUX_PLUGIN_DIR
-
 TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
+ln -sTfv $DIR/tmux.conf      $HOME/.tmux.conf
+ln -sTfv $DIR/tmux           $HOME/.tmux
+ln -sTfv $DIR/tmux-themepack $HOME/.tmux-themepack
+echo
+
 echo "-> Installing TPM"
+mkdir -pv $TMUX_PLUGIN_DIR
 git clone https://github.com/tmux-plugins/tpm $TPM_DIR
+echo
 
 echo "-> Updating TPM"
 git -C $TPM_DIR pull
+echo
 
 # Install TPM plugins
 echo "-> Installing TPM Plugins"
@@ -92,55 +93,61 @@ tmux start-server      # start a server but don't attach to it
 tmux new-session -d    # create a new session but don't attach to it either
 $TMUX_PLUGIN_DIR/tpm/scripts/install_plugins.sh   # install the plugins
 tmux kill-server       # killing the server is not required, I guess
-
 echo
+
 ##############################################################
 ##                            Git                           ##
 ##############################################################
-echo "-> Configuring Git"
-ln -sTf $DIR/gitconfig $HOME/.gitconfig
+echo "=> Configuring Git"
+ln -sTfv $DIR/gitconfig $HOME/.gitconfig
+ln -sTfv $DIR/git-prompt-colors.sh $HOME/.git-prompt-colors.sh
+echo
 
 # Installing bash-git-prompt
 BASH_GIT_PROMPT_DIR="$DIR/bash-git-prompt"
 echo "-> Installing bash-git-prompt"
 git clone https://github.com/magicmonty/bash-git-prompt $BASH_GIT_PROMPT_DIR
+ln -sTfv $DIR/bash-git-prompt      $HOME/.bash-git-prompt
+echo
 
 echo "-> Updating bash-git-prompt"
 git -C $BASH_GIT_PROMPT_DIR pull
-
-ln -sTf $DIR/bash-git-prompt      $HOME/.bash-git-prompt
-ln -sTf $DIR/git-prompt-colors.sh $HOME/.git-prompt-colors.sh
-
 echo
+
 ##############################################################
 ##                            Ruby                          ##
 ##############################################################
-echo "-> Configuring Ruby"
-
+echo "=> Configuring Ruby"
+RUBY_VERSION="2.6.3"
 RBENV_DIR="$DIR/rbenv"
+RUBY_BUILD_DIR="$RBENV_DIR/plugins/ruby-build"
+
 echo "-> Installing rbenv"
 git clone https://github.com/rbenv/rbenv.git $RBENV_DIR
+ln -sTfv $RBENV_DIR $HOME/.rbenv
+echo
 
 echo "-> Updating rbenv"
 git -C $RBENV_DIR pull
+echo
 
-ln -sTf $RBENV_DIR $HOME/.rbenv
-
-RUBY_BUILD_DIR="$RBENV_DIR/plugins/ruby-build"
 echo "-> Installing ruby-build"
 git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_DIR
+echo
 
 echo "-> Updating ruby-build"
 git -C $RUBY_BUILD_DIR pull
+echo
 
-RUBY_VERSION="2.6.3"
 echo "-> Installing Ruby v$RUBY_VERSION"
 $RBENV_DIR/bin/rbenv install --skip-existing $RUBY_VERSION
-$RBENV_DIR/bin/rbenv global  $RUBY_VERSION
+$RBENV_DIR/bin/rbenv global $RUBY_VERSION
+echo
 
 echo "-> Installing Bundler"
 $RBENV_DIR/shims/gem install bundler
+echo
 
 echo
 ##############################################################
-echo "-> Finished."
+echo "=> Finished."
