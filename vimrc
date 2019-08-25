@@ -73,7 +73,7 @@ set history=50                                          " set command-line histo
 set noshowmode                                          " dont show current mode; airline does it
 set scrolloff=4                                         " minimum number of screen lines showing around the cursor
 set wildmenu                                            " enable command-line completion
-set wildmode=longest,list                               " command-line completion menu
+set wildmode=list,full                                  " command-line completion menu
 set completefunc=syntaxcomplete#Complete                " insert completion function
 set completeopt=longest,menuone,preview                 " insert completion menu
 set showmatch                                           " show matching parenthesis (brackets)
