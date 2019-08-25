@@ -31,6 +31,7 @@ let g:syntastic_check_on_open = 0                       " syntastic: don't execu
 let g:syntastic_check_on_wq = 0                         " syntastic: don't execute syntastic on save&exit
 let g:syntastic_mode_map = { "mode": "passive" }        " syntastic: don't execute syntastic automatically
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']      " syntastic: checkers for Ruby code
+let g:syntastic_sh_checkers = ['sh', 'shellcheck']      " syntastic: checkers for Shell script
 nnoremap <Leader>c  :SyntasticCheck<CR>|                " syntastic: manually execute syntastic checkers
 
 map <Leader>v <C-W>v<C-W><Right>|                       " \s to open split window below
