@@ -51,7 +51,10 @@ TMUX_PLUGIN_DIR="$DIR/tmux/plugins"
 TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
 ln -sTfv "$DIR/tmux.conf"      "$HOME/.tmux.conf"
 ln -sTfv "$DIR/tmux"           "$HOME/.tmux"
-ln -sTfv "$DIR/tmux-themepack" "$HOME/.tmux-themepack"
+echo
+
+echo "=> Cloning Tmux themes"
+git clone https://github.com/jimeh/tmux-themepack.git "$HOME/.tmux-themepack"
 echo
 
 echo "-> Installing TPM"
