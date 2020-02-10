@@ -9,7 +9,7 @@ Plug 'janko-m/vim-test'                                 " run your tests inside 
 Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
 Plug 'AndrewRadev/linediff.vim'
 "Plug 'KitN/nand2-vim-syn'                              " syntax coloring for nand2tetris course
-"Plug 'fatih/vim-go'                                    " syntax coloring for GO langiage
+Plug 'fatih/vim-go'                                    " syntax coloring for GO langiage
 call plug#end()                                         " vim-plug: end of install plugins section
 
 map <Leader>tn :TestNearest<cr>|                        " vim-test: perform only the nearest test
