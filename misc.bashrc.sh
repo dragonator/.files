@@ -17,18 +17,6 @@ CODE_DIR="$HOME/code"
 export EDITOR=vim
 
 ##############################################################
-##                         Aliases                          ##
-##############################################################
-alias tree='tree -a --dirsfirst -I .git'
-alias ls='tree -L 1'
-alias ll='\ls -ltrh --color'
-alias la='ll -a'
-alias lla='la'
-alias grep='grep --color -n'
-alias .files='cd ~/.files'
-alias .f='.files'
-
-##############################################################
 ##                          Others                          ##
 ##############################################################
 # Set "**" to match all files and zero or more (sub)directories
