@@ -9,7 +9,9 @@ Plug 'janko-m/vim-test'                                 " run your tests inside 
 Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
 Plug 'AndrewRadev/linediff.vim'
 "Plug 'KitN/nand2-vim-syn'                              " syntax coloring for nand2tetris course
-Plug 'fatih/vim-go'                                    " syntax coloring for GO langiage
+Plug 'fatih/vim-go'                                     " syntax coloring for GO langiage
+"Plug 'ctrlpvim/ctrlp.vim'                               " open files with fuzzy names or regular expression matches
+Plug 'uarun/vim-protobuf'                               " syntax highlighting for Google's Protocol Buffers
 call plug#end()                                         " vim-plug: end of install plugins section
 
 map <Leader>tn :TestNearest<cr>|                        " vim-test: perform only the nearest test
@@ -46,14 +48,8 @@ nnoremap [b orequire 'byebug'; byebug<ESC>|             " [b to call byebug in t
 
 vnoremap // y/<C-R>"<CR>                                " // in VISUAL mode to search the selected text
 
-nnoremap <Left>  :     echo "No left for you!"<CR>      " disable left arrow in NORMAL mode
-nnoremap <Right> :     echo "No right for you!"<CR>     " disable right arrow in NORMAL mode
-nnoremap <Up>    :     echo "No up for you!"<CR>        " disable up arrow in NORMAL mode
-nnoremap <Down>  :     echo "No down for you!"<CR>      " disable down arrow in NORMAL mode
-vnoremap <Left>  :<C-u>echo "No left for you!"<CR>      " disable left arrow in VISUAL mode
-vnoremap <Right> :<C-u>echo "No right for you!"<CR>     " disable right arrow in VISUAL mode
-vnoremap <Up>    :<C-u>echo "No up for you!"<CR>        " disable up arrow in VISUAL mode
-vnoremap <Down>  :<C-u>echo "No down for you!"<CR>      " disable down arrow in VISUAL mode
+autocmd FileType ruby imap <buffer> <C-i> <C-x><C-o>|   " smart suggestion via vim-ruby
+autocmd FileType go   imap <buffer> <C-i> <C-x><C-o>|   " smart suggestion via vim-go
 
 syntax enable                                           " enable syntax highlightning
 colorscheme seoul256                                    " select a colorscheme
@@ -68,7 +64,7 @@ set smartcase                                           " case-sensitive search 
 set hlsearch                                            " highlight all search matches
 set mouse=a                                             " enable mouse in all modes
 set ttymouse=sgr                                        " SGR-styled mouse input (works beyond 223 column)
-set clipboard=unnamedplus                               " use system clipboard
+set clipboard=unnamed                                   " use system clipboard
 set history=50                                          " set command-line history buffer size
 "set showcmd                                            " display incomplete commands
 set noshowmode                                          " dont show current mode; airline does it
@@ -110,8 +106,10 @@ autocmd InsertLeave * set relativenumber                " turn on relative numbe
 autocmd BufLeave    * set norelativenumber              " turn off relative numbers in the old buffer when switching buffers
 autocmd FocusLost   * set norelativenumber              " turn off relative numbers when buffer is loosing focus
 autocmd InsertEnter * set norelativenumber              " turn off relative numbers when entering INSERT mode
-autocmd BufNewFile  *.gradle set filetype=groovy        " use groovy as filetype when creating new *.gradle files
-autocmd BufRead     *.gradle set filetype=groovy        " use groovy as filetype when opening existing *.gradle files
+autocmd BufNewFile  *.gradle set syntax=groovy          " use groovy as filetype when creating new *.gradle files
+autocmd BufRead     *.gradle set syntax=groovy          " use groovy as filetype when opening existing *.gradle files
+autocmd BufNewFile  Jenkinsfile set syntax=groovy       " use groovy as filetype when creating new Jenkinsfile
+autocmd BufRead     Jenkinsfile set syntax=groovy       " use groovy as filetype when opening existing Jenkinsfile
 autocmd BufNewFile  *.hdl    set syntax=hdl             " use hdl syntax when creating new *.hdl files
 autocmd BufRead     *.hdl    set syntax=hdl             " use hdl syntax when opening existing *.hdl files
 
