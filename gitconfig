@@ -39,7 +39,7 @@
   pretty = oneline
 [log]
   decorate = auto
-[includeIf "gitdir:**/tdragano/**"]
+[includeIf "gitdir:**/tdraganov/**"]
   path = ~/.gitconfig-work
 [push]
   default = simple
