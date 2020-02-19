@@ -2,6 +2,7 @@
 ##                         Aliases                          ##
 ##############################################################
 alias tree='tree -a --dirsfirst -C -I .git'
+alias t='tree'
 #alias ls='tree -L 1'
 alias ls='\ls -G'
 alias ll='\ls -ltrh -G'
