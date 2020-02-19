@@ -8,4 +8,6 @@ source $DIR/ruby.bashrc.sh
 source $DIR/go.bashrc.sh
 source $DIR/python.bashrc.sh
 
+source <(jump shell bash)
+source <(kubectl completion bash)
 sanitize_path
