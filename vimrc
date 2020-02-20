@@ -1,3 +1,6 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                   Plugins                                                         "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugs')                         " vim-plug: start of install plugins section
 Plug 'christoomey/vim-tmux-navigator'                   " navigate vim and tmux with consistent set of mappings
 Plug 'vim-airline/vim-airline'                          " pretty status line
@@ -8,38 +11,31 @@ Plug 'vim-ruby/vim-ruby'                                " ruby support
 Plug 'janko-m/vim-test'                                 " run your tests inside VIM
 Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
 Plug 'AndrewRadev/linediff.vim'
-"Plug 'KitN/nand2-vim-syn'                              " syntax coloring for nand2tetris course
 Plug 'fatih/vim-go'                                     " syntax coloring for GO langiage
-"Plug 'ctrlpvim/ctrlp.vim'                               " open files with fuzzy names or regular expression matches
 Plug 'uarun/vim-protobuf'                               " syntax highlighting for Google's Protocol Buffers
+Plug 'jparise/vim-graphql'                              " plugin for GraphQL
+Plug 'preservim/nerdtree'                               " a tree explorer plugin for vim.
+Plug 'preservim/nerdcommenter'                          " Vim plugin for intensely nerdy commenting powers
+"Plug 'KitN/nand2-vim-syn'                               " syntax coloring for nand2tetris course
+"Plug 'ctrlpvim/ctrlp.vim'                               " open files with fuzzy names or regular expression matches
 call plug#end()                                         " vim-plug: end of install plugins section
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                Key mappings                                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>tn :TestNearest<cr>|                        " vim-test: perform only the nearest test
 map <Leader>tf :TestFile<cr>|                           " vim-test: perform all tests in current file
 map <Leader>ts :TestSuite<cr>|                          " vim-test: perform all tests of current type
 map <Leader>tl :TestLast<cr>|                           " vim-test: perform last executed test
 map <Leader>tv :TestVisit<cr>|                          " vim-test: open the file with tests
-
-map [f <C-W><C-d>|                                      " vim-cucumber: open step-definition in split below
-map ]f <C-W><C-d><C-W>L|                                " vim-cucumber: open step-definition in split to the right
-
-set statusline+=%#warningmsg#                           " TODO
-set statusline+=%{SyntasticStatuslineFlag()}            " TODO
-set statusline+=%*                                      " TODO
-
-let g:syntastic_always_populate_loc_list = 1            " syntastic: add all valuations to the location list
-let g:syntastic_auto_loc_list = 1                       " syntastic: show list of valuations in a pane below
-let g:syntastic_check_on_open = 0                       " syntastic: don't execute syntastic on file opening
-let g:syntastic_check_on_wq = 0                         " syntastic: don't execute syntastic on save&exit
-let g:syntastic_mode_map = { "mode": "passive" }        " syntastic: don't execute syntastic automatically
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']      " syntastic: checkers for Ruby code
-let g:syntastic_sh_checkers = ['sh', 'shellcheck']      " syntastic: checkers for Shell script
-nnoremap <Leader>c  :SyntasticCheck<CR>|                " syntastic: manually execute syntastic checkers
-
+map <Leader>tt :NERDTreeToggle<cr>|                     " nerdtree: toggle directory tree
 map <Leader>v <C-W>v<C-W><Right>|                       " \s to open split window below
 map <Leader>s <C-W>s<C-W><Down>|                        " \v to open split window to the right
 map <Leader>1  :!!<CR>|                                 " \1 to rerun last shell command
+map [f <C-W><C-d>|                                      " vim-cucumber: open step-definition in split below
+map ]f <C-W><C-d><C-W>L|                                " vim-cucumber: open step-definition in split to the right
 
+nnoremap <Leader>c  :SyntasticCheck<CR>|                " syntastic: manually execute syntastic checkers
 nnoremap <Leader>w  :w<CR>|                             " \w to save the current file
 nnoremap <Leader>q  :q<CR>|                             " \q to quit the current file
 nnoremap <Leader>x  :x<CR>|                             " \x to save and quit the current file
@@ -48,9 +44,32 @@ nnoremap [b orequire 'byebug'; byebug<ESC>|             " [b to call byebug in t
 
 vnoremap // y/<C-R>"<CR>                                " // in VISUAL mode to search the selected text
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                File settings                                                      "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType ruby imap <buffer> <C-i> <C-x><C-o>|   " smart suggestion via vim-ruby
 autocmd FileType go   imap <buffer> <C-i> <C-x><C-o>|   " smart suggestion via vim-go
+autocmd BufEnter,FocusGained,InsertLeave * set relativenumber    " turn on relative numbers on active buffer
+autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber  " turn off relative numbers non-active buffer
+autocmd BufNewFile,BufRead  *.gradle    set syntax=groovy   " set groovy syntax for *.gradle files
+autocmd BufNewFile,BufRead  Jenkinsfile set syntax=groovy   " set groovy syntax for Jenkinsfile
+autocmd BufNewFile,BufRead  *.hdl       set syntax=hdl      " set hdl syntax for *.hdl files
+autocmd BufNewFile,BufRead  *.dql       set syntax=graphql  " set graphql syntax for *.dql files
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                               Plugin settings                                                     "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list = 1            " syntastic: add all violations to the location list
+let g:syntastic_auto_loc_list = 1                       " syntastic: show list of valuations in a pane below
+let g:syntastic_check_on_open = 0                       " syntastic: don't execute syntastic on file opening
+let g:syntastic_check_on_wq = 0                         " syntastic: don't execute syntastic on save&exit
+let g:syntastic_mode_map = { "mode": "passive" }        " syntastic: don't execute syntastic automatically
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']      " syntastic: checkers for Ruby code
+let g:syntastic_sh_checkers = ['sh', 'shellcheck']      " syntastic: checkers for Shell script
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                    Other                                                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                                           " enable syntax highlightning
 colorscheme seoul256                                    " select a colorscheme
 set background=dark                                     " set dark background
@@ -66,7 +85,6 @@ set mouse=a                                             " enable mouse in all mo
 set ttymouse=sgr                                        " SGR-styled mouse input (works beyond 223 column)
 set clipboard=unnamed                                   " use system clipboard
 set history=50                                          " set command-line history buffer size
-"set showcmd                                            " display incomplete commands
 set noshowmode                                          " dont show current mode; airline does it
 set scrolloff=4                                         " minimum number of screen lines showing around the cursor
 set wildmenu                                            " enable command-line completion
@@ -76,8 +94,6 @@ set completeopt=longest,menuone,preview                 " insert completion menu
 set showmatch                                           " show matching parenthesis (brackets)
 set matchtime=1                                         " 1/10 of a second to show matching bracket
 set encoding=utf-8                                      " set overal vim encoding to UTF-8
-"set title                                               "
-"let &titleold=getcwd()                                  "
 set tabstop=2                                           " number of spaces per Tab
 set shiftwidth=2                                        " number of spaces to shift
 set expandtab                                           " write spaces i.s.o. tab (<C-V>Tab for real tab)
@@ -86,8 +102,6 @@ set autoindent                                          " automatically indent i
 set nobackup                                            " don't create backups
 set nowritebackup                                       " don't create backups when overwriting files
 set noswapfile                                          " don't create swap files for buffers
-"set noerrorbells                                        "
-"visualbell t_vb=                                        " disable beeping
 set nowrap                                              " disable line wrap
 set cursorline                                          " highlight cursor line
 set cursorcolumn                                        " highlight cursor column
@@ -98,22 +112,16 @@ set splitbelow                                          " show new split window 
 set splitright                                          " show new split window on the right
 set ttimeoutlen=70                                      " timeout length
 set number                                              " show current line number i.s.o. 0 (hybrid numbers)
+set listchars=tab:▸\ ,trail:·                           " show trailing whitespaces and tabs
+set list
 
-" Automatic settings
-autocmd BufEnter    * set relativenumber                " turn on relative numbers in the new buffer when switching buffers
-autocmd FocusGained * set relativenumber                " turn on relative numbers in focused buffer
-autocmd InsertLeave * set relativenumber                " turn on relative numbers when leaving INSERT mode
-autocmd BufLeave    * set norelativenumber              " turn off relative numbers in the old buffer when switching buffers
-autocmd FocusLost   * set norelativenumber              " turn off relative numbers when buffer is loosing focus
-autocmd InsertEnter * set norelativenumber              " turn off relative numbers when entering INSERT mode
-autocmd BufNewFile  *.gradle set syntax=groovy          " use groovy as filetype when creating new *.gradle files
-autocmd BufRead     *.gradle set syntax=groovy          " use groovy as filetype when opening existing *.gradle files
-autocmd BufNewFile  Jenkinsfile set syntax=groovy       " use groovy as filetype when creating new Jenkinsfile
-autocmd BufRead     Jenkinsfile set syntax=groovy       " use groovy as filetype when opening existing Jenkinsfile
-autocmd BufNewFile  *.hdl    set syntax=hdl             " use hdl syntax when creating new *.hdl files
-autocmd BufRead     *.hdl    set syntax=hdl             " use hdl syntax when opening existing *.hdl files
+set statusline+=%#warningmsg#                           " TODO
+set statusline+=%{SyntasticStatuslineFlag()}            " TODO
+set statusline+=%*                                      " TODO
 
 " map Q to exit vim with an error code in diff mode
 if &diff
   map Q :cquit<CR>
 endif
+
+let &t_ut=''                                            " against vim's background color erase
