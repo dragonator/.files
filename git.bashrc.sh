@@ -16,21 +16,6 @@ GIT_PROMPT_THEME=Custom
 source ~/.bash-git-prompt/gitprompt.sh
 
 ##############################################################
-##                          Aliases                         ##
-##############################################################
-alias glog="git netlog"
-alias gd="git diff"
-alias gdif="git diff"
-alias gdiff="git diff"
-alias gdifc="git diff --cached"
-alias gdifno="git diff --name-only"
-alias gs="git status"
-alias gst="git status"
-alias gad="git add"
-alias gadd="git add"
-alias gcom="git commit -m"
-
-##############################################################
 ##                       Functions                          ##
 ##############################################################
 # Clone a Git repository into a non-empty directory

@@ -1,26 +1,14 @@
 ##############################################################
-##                   Customize bash                         ##
+##                      Miscellaneous                       ##
 ##############################################################
-# Adjust the title with the current directory
-export MY_XTITLE=1
+# Set "**" to match all files and zero or more (sub)directories
+shopt -s globstar
 
 ##############################################################
 ##                   Internal Variables                     ##
 ##############################################################
 # Path to code directory
 CODE_DIR="$HOME/code"
-
-##############################################################
-##                    Export Variables                      ##
-##############################################################
-# Set vim as default editor
-export EDITOR=vim
-
-##############################################################
-##                          Others                          ##
-##############################################################
-# Set "**" to match all files and zero or more (sub)directories
-shopt -s globstar
 
 ##############################################################
 ##                     Bash Completions                     ##
