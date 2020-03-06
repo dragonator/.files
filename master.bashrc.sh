@@ -16,8 +16,10 @@ eval "$(rbenv init -)"
 ##############################################################
 ##                           Go                             ##
 ##############################################################
-export GOPATH=$HOME/code/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GOPATH="$HOME/code/go"
+export GOROOT="/usr/local/opt/go/libexec"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin"
 
 ##############################################################
 ##                         Python                           ##
