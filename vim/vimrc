@@ -10,14 +10,16 @@ Plug 'tpope/vim-cucumber'                               " for opening step defin
 Plug 'vim-ruby/vim-ruby'                                " ruby support
 Plug 'janko-m/vim-test'                                 " run your tests inside VIM
 Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
-Plug 'AndrewRadev/linediff.vim'
 Plug 'fatih/vim-go'                                     " syntax coloring for GO langiage
+"Plug 'jodosha/vim-godebug'                              " go debugging plugin
 Plug 'uarun/vim-protobuf'                               " syntax highlighting for Google's Protocol Buffers
-Plug 'jparise/vim-graphql'                              " plugin for GraphQL
+Plug 'jparise/vim-graphql'                              " syntax highlightning for GraphQL
 Plug 'preservim/nerdtree'                               " a tree explorer plugin for vim.
 Plug 'preservim/nerdcommenter'                          " Vim plugin for intensely nerdy commenting powers
+Plug 'rizzatti/dash.vim'                                " Dash.app integration for vim
 "Plug 'KitN/nand2-vim-syn'                               " syntax coloring for nand2tetris course
 "Plug 'ctrlpvim/ctrlp.vim'                               " open files with fuzzy names or regular expression matches
+"Plug 'AndrewRadev/linediff.vim'                         " compare vim selections
 call plug#end()                                         " vim-plug: end of install plugins section
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -82,7 +84,6 @@ set ignorecase                                          " case-insensitive searc
 set smartcase                                           " case-sensitive search if some uppercase
 set hlsearch                                            " highlight all search matches
 set mouse=a                                             " enable mouse in all modes
-set ttymouse=sgr                                        " SGR-styled mouse input (works beyond 223 column)
 set clipboard=unnamed                                   " use system clipboard
 set history=50                                          " set command-line history buffer size
 set noshowmode                                          " dont show current mode; airline does it
@@ -125,3 +126,7 @@ if &diff
 endif
 
 let &t_ut=''                                            " against vim's background color erase
+
+if !has('nvim')
+  set ttymouse=sgr                                        " SGR-styled mouse input (works beyond 223 column)
+endif
