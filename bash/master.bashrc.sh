@@ -34,8 +34,9 @@ source /usr/local/bin/virtualenvwrapper.sh
 ##############################################################
 ##                Includes and integrations                 ##
 ##############################################################
-# load bash completion
+# load completions
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+source $DIR/git-completion.sh
 
 source $DIR/misc.bashrc.sh
 source $DIR/complete_alias.sh

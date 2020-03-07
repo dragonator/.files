@@ -44,9 +44,3 @@ function restore_prompt() {
     git_root=`git rev-parse --show-toplevel`
     rm -f "$git_root"/.bash-git-rc
 }
-
-##############################################################
-##                      Completion                          ##
-##############################################################
-# Enable bash completions for Git
-source ~/.files/git-completion.bash
