@@ -44,7 +44,8 @@ alias gdno='git diff --name-only'
 alias gs='git status'
 alias ga='git add'
 alias gco='git checkout'
-alias gcom='git commit -m'
+alias gc='git commit'
+alias gcm='git commit -m'
 
 # alias completion (see more on misc.bashrc.sh)
 complete -F _complete_alias k
