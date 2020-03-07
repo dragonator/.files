@@ -4,6 +4,8 @@
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Get directory of current script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -42,5 +44,6 @@ source $DIR/git.bashrc.sh
 
 source <(jump shell bash)
 source <(kubectl completion bash)
+source <(dircolors $DIR/dir_colors)
 
 sanitize_path

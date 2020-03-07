@@ -6,12 +6,14 @@ alias v='vim'
 alias vd='vimdiff'
 
 # tree
-alias t='tree -L'
 alias tree='tree -a --dirsfirst -C -I .git'
+alias t='tree'
+alias tl='tree -l -L'
 
 # ls
-alias ls='\ls -G'
-alias ll='\ls -ltrh -G'
+alias ls='ls --color'
+alias l='ls'
+alias ll='ls -ltrh'
 alias la='ll -a'
 alias lla='la'
 
