@@ -3,7 +3,8 @@
   email = draganov93@gmail.com
 [core]
   editor = vim
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.files/git/gitignore_global
+  hooksPath = ~/.files/git/hooks
 [color]
   diff = auto
   status = auto
