@@ -7,9 +7,6 @@ shopt -s globstar
 # Make Bash append rather than overwrite the history on disk
 shopt -s histappend
 
-# Whenever displaying the prompt, write the previous line to disk
-export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-
 ##############################################################
 ##                   Internal Variables                     ##
 ##############################################################
