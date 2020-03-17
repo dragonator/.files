@@ -6,7 +6,7 @@ COMMIT_MSG_FILE=$1
 COMMIT_MESSAGE=$(cat $COMMIT_MSG_FILE)
 
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-TICKET_ID=$(echo $BRANCH_NAME | sed -nr 's,([a-z-]+/)?([A-Z]+-[0-9]+)-.+,\2,p')
+TICKET_ID=$(echo $BRANCH_NAME | sed -nr 's,([a-z-]+/)?([A-Z]+-[0-9]+)(-|_).+,\2,p')
 
 # If no ticket is extracted from the branch name or the commit message already
 # contains the prefix (`--amend`), then do not add it again.
