@@ -2,6 +2,7 @@
 ##                         Aliases                          ##
 ##############################################################
 # vim
+#alias vim='nvim'
 alias v='vim'
 alias vd='vimdiff'
 
@@ -33,6 +34,7 @@ alias bi='bundle install'
 
 # shortcuts
 alias .f='cd ~/.files'
+alias vimrc='vim ~/.vim/vimrc'
 
 # git
 alias g='git'
@@ -46,6 +48,7 @@ alias ga='git add'
 alias gco='git checkout'
 alias gc='git commit'
 alias gcm='git commit -m'
+alias grb='git rebase'
 
 # alias completion (see more on misc.bashrc.sh)
 complete -F _complete_alias k
