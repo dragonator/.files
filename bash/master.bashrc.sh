@@ -15,17 +15,17 @@ export HISTSIZE="10000"
 ##############################################################
 ##                           Go                             ##
 ##############################################################
-export GOPATH="$HOME/code/go"
-export GOROOT="/usr/local/opt/go/libexec"
+export GOPATH="$HOME/go"
+export GO111MODULE="on"
 export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$GOROOT/bin"
+export GOTESTSUM_FORMAT="testname"
 
 ##############################################################
 ##                         Python                           ##
 ##############################################################
 export WORKON_HOME="$HOME/.virtualenvs"
 export PROJECT_HOME="$HOME/code"
-export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 source /usr/local/bin/virtualenvwrapper.sh
 
 ##############################################################

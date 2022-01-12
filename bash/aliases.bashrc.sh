@@ -6,6 +6,9 @@
 alias v='vim'
 alias vd='vimdiff'
 
+# vscode
+alias vscode='`which code`'
+
 # tree
 alias tree='tree -a --dirsfirst -C -I .git'
 alias t='tree'
