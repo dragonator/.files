@@ -35,9 +35,7 @@ source $DIR/complete_alias.sh
 source $DIR/aliases.bashrc.sh
 source $DIR/git.bashrc.sh
 
-source <(jump shell bash)
 source <(kubectl completion bash)
 source <(dircolors $DIR/dir_colors)
-source <(rbenv init -)
 
 sanitize_path
