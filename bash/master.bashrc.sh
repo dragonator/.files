@@ -21,14 +21,6 @@ export PATH="$PATH:$GOPATH/bin"
 export GOTESTSUM_FORMAT="testname"
 
 ##############################################################
-##                         Python                           ##
-##############################################################
-export WORKON_HOME="$HOME/.virtualenvs"
-export PROJECT_HOME="$HOME/code"
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
-source /usr/local/bin/virtualenvwrapper.sh
-
-##############################################################
 ##                Includes and integrations                 ##
 ##############################################################
 # Get directory of current script
