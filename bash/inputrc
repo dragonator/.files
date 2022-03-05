@@ -1,0 +1,44 @@
+# Fix DEL-Key not working in some Application
+set enable-keypad on
+
+# Disables system bell
+set bell-style none
+
+# perform filename matching and completion in a case-insensitive fashion.
+set completion-ignore-case On
+
+# expand tilde when Readline attempts word completion.
+set expand-tilde on
+
+# allow iso-latin1 characters to be inserted rather
+# than converted to prefix-meta sequences
+set convert-meta off
+
+# don't strip characters to 7 bits when reading
+set input-meta on
+
+# display characters with the eighth bit set directly
+# rather than as meta-prefixed characters
+set output-meta on
+
+# skip bell before showing possible completions
+set show-all-if-ambiguous on
+
+# append file's type denoting character when listing completions
+set visible-stats on
+
+## enable Readline vi editing style
+#set editing-mode vi
+
+## show current editing mode
+#set show-mode-in-prompt on
+
+## show beaming underline cursor to indicate vi insert mode
+#set vi-ins-mode-string \1\e[3 q\2
+
+## show block cursor to indicate vi command mode
+#set vi-cmd-mode-string \1\e[2 q\2
+
+# non-incremental search through history using Up and Down
+"\C-[OA": history-search-backward
+"\C-[OB": history-search-forward

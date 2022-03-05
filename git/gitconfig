@@ -1,0 +1,50 @@
+[user]
+  name = Teodor Draganov
+  email = draganov93@gmail.com
+[core]
+  editor = vim
+  excludesfile = ~/.files/git/gitignore_global
+  hooksPath = ~/.files/git/hooks
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[alias]
+  a  = add
+  aa = add --all
+  br = branch
+  cl = clone
+  co = checkout
+  cp = cherry-pick
+  df = diff
+  dt = difftool
+  dfno = diff --name-only
+  netlog = log -n 15 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  st = status
+  st-tracked = status -uno
+  uncommit = reset HEAD^
+[diff]
+  tool = vimdiff
+[difftool "vimdiff"]
+  trustExitCode = true
+[difftool]
+  prompt = false
+[merge]
+  tool = bc3
+[mergetool "bc3"]
+  trustExitCode = true
+[format]
+  pretty = oneline
+[log]
+  decorate = auto
+[includeIf "gitdir:**/tdraganov/**"]
+  path = ~/.gitconfig-work
+[push]
+  default = simple
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+[pull]
+	rebase = false

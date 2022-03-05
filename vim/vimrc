@@ -1,0 +1,201 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                   Plugins                                                         "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugs')                         " vim-plug: start of install plugins section
+Plug 'christoomey/vim-tmux-navigator'                   " navigate vim and tmux with consistent set of mappings
+Plug 'vim-airline/vim-airline'                          " pretty status line
+Plug 'tpope/vim-endwise'                                " close code blocks for you: 'end' keyword, brakcets, etc.
+Plug 'tpope/vim-fugitive'                               " use GIT in VIM
+Plug 'tpope/vim-cucumber'                               " for opening step definitions out of feature files
+Plug 'vim-ruby/vim-ruby'                                " ruby support
+Plug 'janko-m/vim-test'                                 " run your tests inside VIM
+Plug 'vim-syntastic/syntastic'                          " run code quality checkers on open file
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " Go plugin for vim
+Plug 'uarun/vim-protobuf'                               " syntax highlighting for Google's Protocol Buffers
+Plug 'jparise/vim-graphql'                              " syntax highlightning for GraphQL
+Plug 'preservim/nerdtree'                               " a tree explorer plugin for vim.
+Plug 'preservim/nerdcommenter'                          " Vim plugin for intensely nerdy commenting powers
+Plug 'rizzatti/dash.vim'                                " Dash.app integration for vim
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'OrangeT/vim-csharp'
+"Plug 'vim-airline/vim-airline-themes'                   " collection of airline themes
+"Plug 'jodosha/vim-godebug'                              " go debugging plugin
+"Plug 'KitN/nand2-vim-syn'                               " syntax coloring for nand2tetris course
+"Plug 'ctrlpvim/ctrlp.vim'                               " open files with fuzzy names or regular expression matches
+"Plug 'AndrewRadev/linediff.vim'                         " compare vim selections
+call plug#end()                                         " vim-plug: end of install plugins section
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                Key mappings                                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>tn :TestNearest<CR>|                        " vim-test: perform only the nearest test
+map <Leader>tf :TestFile<CR>|                           " vim-test: perform all tests in current file
+map <Leader>ts :TestSuite<CR>|                          " vim-test: perform all tests of current type
+map <Leader>tl :TestLast<CR>|                           " vim-test: perform last executed test
+map <Leader>tv :TestVisit<CR>|                          " vim-test: open the file with tests
+map <Leader>f :NERDTreeToggle<CR>|                      " nerdtree: toggle directory tree
+map <Leader>F :NERDTreeFind<CR>|                        " nerdtree: open nerdtree and find the current file
+map <Leader>v <C-W>v<C-W><Right>|                       " \s to open split window below
+map <Leader>s <C-W>s<C-W><Down>|                        " \v to open split window to the right
+map <Leader>p :CtrlP<CR>|
+map [f <C-W><C-d>|                                      " vim-cucumber: open step-definition in split below
+map ]f <C-W><C-d><C-W>L|                                " vim-cucumber: open step-definition in split to the right
+
+nnoremap <Leader>c  :SyntasticCheck<CR>|                " syntastic: manually execute syntastic checkers
+nnoremap <Leader>w  :w<CR>|                             " \w to save the current file
+nnoremap <Leader>q  :q<CR>|                             " \q to quit the current file
+nnoremap <Leader>x  :x<CR>|                             " \x to save and quit the current file
+nnoremap [b orequire 'byebug'; byebug<ESC>|             " [b to call byebug in the line below
+
+vnoremap // y/<C-R>"<CR>|                               " // in VISUAL mode to search the selected text
+
+nmap <leader>b :enew<CR>|                               " open a new empty buffer
+nmap <leader>e :bp <BAR> bd #<CR>|                      " close the current buffer and move to the previous one
+nmap <leader>l :ls<CR>|                                 " show all open buffers and their status
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                File settings                                                      "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType ruby imap <buffer> <C-i> <C-x><C-o>|   " smart suggestion via vim-ruby
+autocmd FileType go   imap <buffer> <C-i> <C-x><C-o>|   " smart suggestion via vim-go
+autocmd BufNewFile,BufRead  *.gradle    set syntax=groovy   " set groovy syntax for *.gradle files
+autocmd BufNewFile,BufRead  Jenkinsfile set syntax=groovy   " set groovy syntax for Jenkinsfile
+autocmd BufNewFile,BufRead  *.hdl       set syntax=hdl      " set hdl syntax for *.hdl files
+autocmd BufNewFile,BufRead  *.dql       set syntax=graphql  " set graphql syntax for *.dql files
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                               Plugin settings                                                     "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list = 1            " syntastic: add all violations to the location list
+let g:syntastic_auto_loc_list = 1                       " syntastic: show list of valuations in a pane below
+let g:syntastic_check_on_open = 0                       " syntastic: don't execute syntastic on file opening
+let g:syntastic_check_on_wq = 0                         " syntastic: don't execute syntastic on save&exit
+let g:syntastic_mode_map = { "mode": "passive" }        " syntastic: don't execute syntastic automatically
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']      " syntastic: checkers for Ruby code
+let g:syntastic_sh_checkers = ['sh', 'shellcheck']      " syntastic: checkers for Shell script
+let g:syntastic_typescript_checkers = ['tslint']        " syntastic: tslint for Typescript
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = ''                      " set character indicator for line number
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+" define the set of text to display for each mode
+let g:airline_mode_map = {
+    \ '__'     : '-',
+    \ 'c'      : 'C',
+    \ 'i'      : 'I',
+    \ 'ic'     : 'I',
+    \ 'ix'     : 'I',
+    \ 'n'      : 'N',
+    \ 'multi'  : 'M',
+    \ 'ni'     : 'N',
+    \ 'no'     : 'N',
+    \ 'R'      : 'R',
+    \ 'Rv'     : 'R',
+    \ 's'      : 'S',
+    \ 'S'      : 'S',
+    \ '^S'     : 'S',
+    \ 't'      : 'T',
+    \ 'v'      : 'V',
+    \ 'V'      : 'V',
+    \ '^V'     : 'V',
+    \ }
+
+let g:airline_extensions = ['syntastic', 'tabline']     " enable extentions explicitly
+let g:airline#extensions#disable_rtp_load = 1           " disable auto load of extentions
+let g:airline#extensions#tabline#enabled = 1            " enable enhanced tabline
+let g:airline#extensions#tabline#show_tabs = 0          " don't show tabs
+let g:airline#extensions#tabline#formatter = 'unique_tail' " buffer names
+let g:airline#extensions#tabline#tab_nr_type = 1        " configure how numbers are displayed in tab mode
+let g:airline#extensions#tabline#buffer_min_count = 2   " minimum number of buffers needed to show the tabline
+let g:airline#extensions#tabline#buffer_idx_mode = 1    " expose mappings for switching buffers
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>= <Plug>AirlineSelectNextTab
+
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeWinSize=60
+
+" open NEDRTree when vim starts with no arguments
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+let g:ack_autoclose = 1                                 " autoclose ack's quickfix list window
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                                    Other                                                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax enable                                           " enable syntax highlightning
+colorscheme seoul256                                    " select a colorscheme
+highlight VertSplit ctermfg=Black ctermbg=DarkGrey    | " set color for vertical split line
+highlight LineNr ctermfg=Grey ctermbg=Black           | " set color for line numbers
+highlight Normal ctermbg=black                        | " set black background
+set hidden                                              " allows buffers to be hidden when they are modified
+"set autochdir                                           " change working dir to parent of current file
+set shell=/bin/bash                                     " set vim shell to bash
+set autoread                                            " automatically reload on file changes
+set backspace=2                                         " make backspace work like most other apps
+set incsearch                                           " show match during search
+set ignorecase                                          " case-insensitive search if all lowercase
+set smartcase                                           " case-sensitive search if some uppercase
+set hlsearch                                            " highlight all search matches
+set mouse=a                                             " enable mouse in all modes
+set clipboard=unnamed                                   " use system clipboard
+set history=50                                          " set command-line history buffer size
+set noshowmode                                          " dont show current mode; airline does it
+set scrolloff=4                                         " minimum number of screen lines showing around the cursor
+set wildmenu                                            " enable command-line completion
+set wildmode=list,full                                  " command-line completion menu
+set completefunc=syntaxcomplete#Complete                " insert completion function
+set completeopt=longest,menuone,preview                 " insert completion menu
+set showmatch                                           " show matching parenthesis (brackets)
+set matchtime=1                                         " 1/10 of a second to show matching bracket
+set encoding=utf-8                                      " set overal vim encoding to UTF-8
+set tabstop=4                                           " number of spaces per Tab
+set shiftwidth=4                                        " number of spaces to shift
+set expandtab                                           " write spaces i.s.o. tab (<C-V>Tab for real tab)
+set smartindent                                         " well...smart indent
+set autoindent                                          " automatically indent in certain cases
+set nobackup                                            " don't create backups
+set nowritebackup                                       " don't create backups when overwriting files
+set noswapfile                                          " don't create swap files for buffers
+set nowrap                                              " disable line wrap
+"set cursorline                                          " highlight cursor line
+"set cursorcolumn                                        " highlight cursor column
+set ruler                                               " show line and column of the cursor position
+set ttimeout                                            " timeout on key codes (faster escaping of INSERT mode)
+set ttimeoutlen=70                                      " timeout lenght
+set splitbelow                                          " show new split window below
+set splitright                                          " show new split window on the right
+set ttimeoutlen=70                                      " timeout length
+set listchars=tab:▸\ ,trail:·                           " show trailing whitespaces and tabs
+set list
+
+set statusline+=%#warningmsg#                           " TODO
+set statusline+=%{SyntasticStatuslineFlag()}            " TODO
+set statusline+=%*                                      " TODO
+
+" map Q to exit vim with an error code in diff mode
+if &diff
+  map Q :cquit<CR>
+endif
+
+let &t_ut=''                                            " against vim's background color erase
+
+if !has('nvim')
+  set ttymouse=sgr                                        " SGR-styled mouse input (works beyond 223 column)
+endif
