@@ -35,7 +35,11 @@ source $DIR/complete_alias.sh
 source $DIR/aliases.bashrc.sh
 source $DIR/git.bashrc.sh
 
-source <(kubectl completion bash)
+if kubectl -v &> /dev/null
+then
+    source <(kubectl completion bash)
+fi
+
 source <(dircolors $DIR/dir_colors)
 
 sanitize_path
