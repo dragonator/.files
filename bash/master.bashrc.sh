@@ -4,9 +4,6 @@
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Whenever displaying the prompt, write the previous line to disk
 export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
@@ -15,10 +12,13 @@ export HISTSIZE="10000"
 ##############################################################
 ##                           Go                             ##
 ##############################################################
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
 export GOPATH="$HOME/go"
 export GO111MODULE="on"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$(go env GOPATH)/bin"
 export GOTESTSUM_FORMAT="testname"
+export GOPRIVATE="gitlab.theopentag.com"
 
 ##############################################################
 ##                Includes and integrations                 ##
